@@ -1,0 +1,24 @@
+From 8d5178f7b7b42da594c4e00ce635182735bc5258 Mon Sep 17 00:00:00 2001
+From: Scott Ellis <scott@jumpnowtek.com>
+Date: Sun, 4 Feb 2018 04:01:51 -0500
+Subject: [PATCH] Add default bootargs
+
+---
+ include/configs/meson-gxbb-common.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/include/configs/meson-gxbb-common.h b/include/configs/meson-gxbb-common.h
+index d88d42d..a28c3ec 100644
+--- a/include/configs/meson-gxbb-common.h
++++ b/include/configs/meson-gxbb-common.h
+@@ -40,6 +40,7 @@
+ #include <config_distro_bootcmd.h>
+ 
+ #define CONFIG_EXTRA_ENV_SETTINGS \
++	"bootargs=console=ttyAML0,115200 rootfstype=ext4 rootwait\0" \
+ 	"fdt_addr_r=0x01000000\0" \
+ 	"scriptaddr=0x1f000000\0" \
+ 	"kernel_addr_r=0x01080000\0" \
+-- 
+2.7.4
+
