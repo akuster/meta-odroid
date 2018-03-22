@@ -1,11 +1,20 @@
 [Unit]
 Description=Odroid LCD 3.5
-ConditionPathExists=/dev/fb2
+After=systemd-modules-load.service systemd-udevd.service
+Requires=systemd-modules-load.service systemd-udevd.service
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
 StandardOutput=tty
+
+ExecStart=/bin/sh -c '/sbin/modprobe aml_i2c'
+ExecStart=/bin/sh -c '/sbin/modprobe pwm-meson'
+ExecStart=/bin/sh -c '/sbin/modprobe pwm-ctrl'
+ExecStart=/bin/sh -c '/sbin/modprobe fbtft_device name=flexpfb rotate=270'
+ExecStart=/bin/sh -c '/sbin/modprobe flexfb chip=ili9488'
+ExecStart=/bin/sh -c '/sbin/modprobe sx865x'
+
 ExecStart=/bin/sh -c 'echo 500000 > /sys/devices/platform/pwm-ctrl/freq0'
 ExecStart=/bin/sh -c 'echo 1 > /sys/devices/platform/pwm-ctrl/enable0'
 ExecStart=/bin/sh -c 'echo 1023 > /sys/devices/platform/pwm-ctrl/duty0'
