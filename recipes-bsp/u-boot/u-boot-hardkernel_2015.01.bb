@@ -17,12 +17,11 @@ UBOOT_REPO_URI ??= "git://github.com/hardkernel/u-boot.git"
 BRANCH = "odroidc2-v2015.01"
 SRC_URI = "${UBOOT_REPO_URI};branch=${BRANCH} \
            file://odroid-c2-hardkernel/boot.ini \
-           https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/aarch64-elf/gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf.tar.xz;name=aarch64toolchain;md5=0 \
-           https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/arm-eabi/gcc-linaro-4.9.4-2017.01-x86_64_arm-eabi.tar.xz;name=armtoolchain;md5=0"
-SRC_URI[aarch64toolchain.md5sum] = "8fd2fff7145b93cfe8dd203e35d513db"
-SRC_URI[aarch64toolchain.sha256sum] = "00c79aaf7ff9b1c22f7b0443a730056b3936561a4206af187ef61a4e3cab1716"
-SRC_URI[armtoolchain.md5sum] = "4ae181da604d5b1b6a41c660669ad7fe"
-SRC_URI[armtoolchain.sha256sum] = "5fa170a74db172dca098c70ae58f4c08d2fca0232ce135530b2ef4996326b4bd"
+           https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/aarch64-linux-gnu/gcc-linaro-${LINAROTOOLCHAIN}-x86_64_aarch64-linux-gnu.tar.xz;name=aarch64toolchain \
+ "
+SRC_URI[aarch64toolchain.md5sum] = "631c4c7b1fe9cb115cf51bd6a926acb7"
+SRC_URI[aarch64toolchain.sha256sum] = "d1f2761b697e6b49f5db1ec0cd48d2fd98224be8cb5ef182093f691e99c923eb"
+
 # TAG s905_6.0.1_v3.7
 SRCREV = "95264d19d04930f67f10f162df70de447659329d"
 
@@ -39,15 +38,13 @@ inherit uboot-boot-scr
 DEPENDS += "bc-native atf-native"
 
 EXTRA_OEMAKE_odroid-c2 = 'V=1 CROSS_COMPILE=${TOOLCHAIN_PREFIX} HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
-
-TOOLCHAIN_PREFIX_odroid-c2 = "aarch64-elf-"
+LINAROTOOLCHAIN = "4.9.4-2017.01"
+TOOLCHAIN_PREFIX_odroid-c2 = "aarch64-linux-gnu-"
+HOST_PREFIX_odroid-c2 = "${TOOLCHAIN_PREFIX}"
+PATH_prepend ="${WORKDIR}/gcc-linaro-${LINAROTOOLCHAIN}-x86_64_aarch64-linux-gnu/bin:"
 
 do_configure_append() {
 	cp ${WORKDIR}/odroid-c2-hardkernel/boot.ini ${B}/
-}
-
-do_compile_prepend() {
-	export PATH=${WORKDIR}/gcc-linaro-4.9.4-2017.01-x86_64_aarch64-elf/bin:${WORKDIR}/gcc-linaro-4.9.4-2017.01-x86_64_arm-eabi/bin:${PATH}
 }
 
 do_compile_append_odroid-c2 () {
