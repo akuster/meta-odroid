@@ -15,12 +15,12 @@ ExecStart=/bin/sh -c '/sbin/modprobe fbtft_device name=flexpfb rotate=270'
 ExecStart=/bin/sh -c '/sbin/modprobe flexfb chip=ili9488'
 ExecStart=/bin/sh -c '/sbin/modprobe sx865x'
 
-ExecStart=/bin/sh -c 'echo 500000 > /sys/devices/platform/pwm-ctrl/freq0'
-ExecStart=/bin/sh -c 'echo 1 > /sys/devices/platform/pwm-ctrl/enable0'
-ExecStart=/bin/sh -c 'echo 1023 > /sys/devices/platform/pwm-ctrl/duty0'
+ExecStart=/bin/sh -c 'echo 500000 > /sys/devices/pwm-ctrl/freq0'
+ExecStart=/bin/sh -c 'echo 1 > /sys/devices/pwm-ctrl/enable0'
+ExecStart=/bin/sh -c 'echo 1023 > /sys/devices/pwm-ctrl/duty0'
 ExecStart=/usr/bin/setterm -blank 0 -powersave off
 #ExecStart=/bin/con2fbmap 1 2
-ExecStop=/bin/sh -c 'echo 0 > /sys/devices/platform/pwm-ctrl/duty0'
+ExecStop=/bin/sh -c 'echo 0 > /sys/devices/pwm-ctrl/duty0'
 
 [Install]
 WantedBy=multi-user.target
