@@ -181,3 +181,9 @@ IMAGE_CMD_sdcard () {
     dd if=${SDIMG_ROOTFS} of=${SDCARD} conv=notrunc seek=1 bs=$(expr 1024 \* ${BOOT_SPACE_ALIGNED} + ${IMAGE_ROOTFS_ALIGNMENT} \* 1024) && sync && sync
 
 }
+# Write U-Boot before wic generates compressed rootfs for odroid-c2 machine
+IMAGE_CMD_wic_append_odroid-c2() {
+    dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel   of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=1 count=442
+    dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel   of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 skip=1 seek=1
+    dd if=${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.${UBOOT_SUFFIX} of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 seek=97
+}
