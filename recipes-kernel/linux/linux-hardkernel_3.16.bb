@@ -6,7 +6,7 @@ SRCREV ?= "254a97d74c952b63aad2dd3fd152c475ed682e5a"
 KBUILD_DEFCONFIG_odroid-c2 = "odroidc2_defconfig"
 
 require linux-stable.inc
-SRC_URI_odroid-c2 = "\
+SRC_URI = "\
     git://github.com/hardkernel/linux;branch=${KBRANCH} \
     https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/aarch64-linux-gnu/gcc-linaro-${LINAROTOOLCHAIN}-x86_64_aarch64-linux-gnu.tar.xz;name=aarch64toolchain \
 "
@@ -25,3 +25,4 @@ PATH_prepend ="${WORKDIR}/gcc-linaro-${LINAROTOOLCHAIN}-x86_64_aarch64-linux-gnu
 #module_conf_fbtft_device = "options fbtft_device name=flexpfb rotate=90"
 #module_conf_flexfb = "options flexfb chip=ili9488"
 #KERNEL_MODULE_PROBECONF += "fbtft_device flexfb"
+COMPATIBLE_MACHINE = "(odroid-c2|odroid-c2-hardkernel)"
