@@ -17,7 +17,7 @@ UBOOT_REPO_URI ??= "git://github.com/hardkernel/u-boot.git"
 BRANCH = "odroidc2-v2015.01"
 SRC_URI = "${UBOOT_REPO_URI};branch=${BRANCH} \
            file://odroid-c2-hardkernel/boot.ini \
-           https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/aarch64-linux-gnu/gcc-linaro-${LINAROTOOLCHAIN}-x86_64_aarch64-linux-gnu.tar.xz;name=aarch64toolchain \
+           https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/aarch64-linux-gnu/gcc-linaro-${LINAROTOOLCHAIN}-x86_64_aarch64-linux-gnu.tar.xz;name=aarch64toolchain;subdir=git \
  "
 SRC_URI[aarch64toolchain.md5sum] = "631c4c7b1fe9cb115cf51bd6a926acb7"
 SRC_URI[aarch64toolchain.sha256sum] = "d1f2761b697e6b49f5db1ec0cd48d2fd98224be8cb5ef182093f691e99c923eb"
@@ -41,7 +41,7 @@ EXTRA_OEMAKE_odroid-c2 = 'V=1 CROSS_COMPILE=${TOOLCHAIN_PREFIX} HOSTCC="${BUILD_
 LINAROTOOLCHAIN = "4.9.4-2017.01"
 TOOLCHAIN_PREFIX_odroid-c2 = "aarch64-linux-gnu-"
 HOST_PREFIX_odroid-c2 = "${TOOLCHAIN_PREFIX}"
-PATH_prepend ="${WORKDIR}/gcc-linaro-${LINAROTOOLCHAIN}-x86_64_aarch64-linux-gnu/bin:"
+PATH_prepend ="${S}/gcc-linaro-${LINAROTOOLCHAIN}-x86_64_aarch64-linux-gnu/bin:"
 
 do_configure_append() {
 	cp ${WORKDIR}/odroid-c2-hardkernel/boot.ini ${B}/
