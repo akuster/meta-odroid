@@ -4,13 +4,7 @@
 # Boot env partition
 part --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --align 1024 --fixed-size 16
 
-# A Rootfs partition
-part --source rootfs --ondisk mmcblk0 --fstype=ext4 --label primary --align 4096 --fixed-size 1024
-
-# Backup Rootfs partition
-part --source rootfs --ondisk mmcblk0 --fstype=ext4 --label secondary --align 4096 --fixed-size 1024
-
-# User data partition
-part --ondisk mmcblk0 --fstype=ext4 --label data --align 4096 --size 1024
+# Rootfs partition
+part --source rootfs --ondisk mmcblk0 --fstype=ext4 --label rootfs --align 4096
 
 bootloader --ptable msdos
