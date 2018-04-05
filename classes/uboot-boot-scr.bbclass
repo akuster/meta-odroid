@@ -141,17 +141,20 @@ python create_uboot_boot_txt() {
             kernelname = localdata.getVar('UBOOT_KERNEL_NAME')
             cfgfile.write('setenv kernelname %s\n' % kernelname)
 
+            bootprefix = localdata.getVar('BOOT_PREFIX')
+            cfgfile.write('setenv bootprefix %s\n' % bootprefix)
+
             uboot_extra_envs = (d.getVar('UBOOT_EXTRA_ENV') or "").split("#")
             if uboot_extra_envs:
                 for e in uboot_extra_envs:
                     cfgfile.write('%s\n' % e)
 
 
-            cfgfile.write('setenv loaddtb     \"${loadcmd} ${boottype} ${bootdev}:${bootpart} ${fdtaddr} ${fdtfile}\"\n')
-            cfgfile.write('setenv loadkernel  \"${loadcmd} ${boottype} ${bootdev}:${bootpart} ${kerneladdr} ${kernelname}\"\n')
+            cfgfile.write('setenv loaddtb     \"${loadcmd} ${boottype} ${bootdev}:${bootpart} ${fdtaddr} ${bootprefix}${fdtfile}\"\n')
+            cfgfile.write('setenv loadkernel  \"${loadcmd} ${boottype} ${bootdev}:${bootpart} ${kerneladdr} ${bootprefix}${kernelname}\"\n')
 
             if initrd:
-                cfgfile.write('setenv loadinitrd  \"${loadcmd} ${boottype} ${bootdev}:${bootpart} ${initrdaddr} ${initrdname}"\n')
+                cfgfile.write('setenv loadinitrd  \"${loadcmd} ${boottype} ${bootdev}:${bootpart} ${initrdaddr} ${bootprefix}${initrdname}"\n')
 
             bootargs = localdata.getVar('UBOOT_BOOTARGS')
             cfgfile.write('setenv bootargs \" %s \"\n' % bootargs)
