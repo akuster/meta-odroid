@@ -30,7 +30,7 @@ Maintenance
 Send pull requests, patches, comments or questions to akuster808@gmail.com
 
 When sending single patches, please using something like:
-'git send-email -1 -M --to akuster808@gmail.com --subject-prefix=meta-odroid][PATCH'
+git send-email -1 -M --to akuster808@gmail.com --subject-prefix='meta-odroid][PATCH'
 
 Layer Maintainer:  Armin Kuster <akuster808@gmail.com>
 
