@@ -2,21 +2,20 @@ OpenEmbedded BSP layer for hardkernel ODROID devices
 
 Status of support devices:
 The following will boot in 4.14 kernel and 2017.11 uboot
-ODROID-XU3: 
-ODROID-XU3-lite: 
+ODROID-XU3:
+ODROID-XU3-lite:
 ODROID-XU4: untested but compat with XU3, network ??
-ODROID-C2: 
-ODROID-HC1: 
+ODROID-C2: SD card image (wic) works (it is tested with core-image-sato)
+ODROID-HC1:
 
 Still on Hardkernel:
-ODROID-c1: 
+ODROID-c1:
 
 TODO:
 C1 will particial boot 4.14 kernel. no mmc support
 
 The below have not been validated against latest:
 ODROID-C1: SD card image works (it is tested with core-image-minimal)
-ODROID-C2: EMMC card image works (it is tested with core-image-minimal)
 
 This layer depends on:
 
