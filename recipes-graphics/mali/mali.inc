@@ -1,10 +1,10 @@
 LICENSE = "Proprietary"
 SECTION = "libs"
 
-DEPENDS += "${@bb.utils.contains("DISTRO_FEATURES", "wayland", " mesa", " ", d)}"
+DEPENDS += "${@bb.utils.contains("DISTRO_FEATURES", "wayland", "virtual/mesa", " ", d)}"
 DEPENDS += "${@bb.utils.contains("DISTRO_FEATURES", "x11", " virtual/libx11 libxext libdrm libxfixes libxdamage", " ", d)}"
 
-PROVIDES += "virtual/egl virtual/libgles1 virtual/libgles2 virtual/libopencl"
+PROVIDES += "virtual/egl virtual/libgles1 virtual/libgles2 virtual/libopencl virtual/libgbm"
 PROVIDES += "${@bb.utils.contains("DISTRO_FEATURES", "wayland", " virtual/libwayland-egl", " ", d)}"
 
 INSANE_SKIP_${PN} = "ldflags dev-so"
