@@ -50,7 +50,7 @@ WKS_FILE_DEPENDS ?= " \
     bmap-tools-native \
 "
 
-MACHINE_FEATURES_append = " serial usbgadget usbhost vfat ext2"
+MACHINE_FEATURES_append = " mali serial usbgadget usbhost vfat ext2"
 
 MACHINE_FEATURES_BACKFILL_CONSIDERED = "rtc"
 
