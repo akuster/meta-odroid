@@ -3,7 +3,7 @@
 include conf/machine/include/samsung-exynos.inc
 include conf/machine/include/odroid-default-settings.inc
 
-DEFAULTTUNE = "cortexa15hf-neon"
+DEFAULTTUNE = "cortexa15thf-neon-vfpv4"
 include conf/machine/include/tune-cortexa15.inc
 
 UBOOT_FDT_LOADADDR = "0x40800000"
@@ -17,7 +17,7 @@ WKS_FILE ?= "odroid_xu-u-boot.wks"
 EXTRA_IMAGEDEPENDS += "secure-odroid"
 MACHINE_FEATURES_append = " alsa screen"
 
-VIRTUAL-RUNTIME_mesa = "mesa" 
+VIRTUAL-RUNTIME_mesa = "mesa"
 
 PREFERRED_PROVIDER_virtual/egl = "mali-t62x"
 PREFERRED_PROVIDER_virtual/libgbm = "mali-t62x"
