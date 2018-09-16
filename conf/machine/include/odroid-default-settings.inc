@@ -1,4 +1,5 @@
 # Odroid BSP default settings
+SOC_FAMILY .= ":odroid"
 
 PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
 XSERVER ?= "xserver-xorg \
