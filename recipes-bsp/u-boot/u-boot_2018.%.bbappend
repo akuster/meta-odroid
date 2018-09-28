@@ -1,10 +1,10 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/u-boot:"
 USE_BOOTSRC ?= "0"
 
-inherit uboot-boot-scr
+inherit ${@bb.utils.contains('SOC_FAMILY', 'odroid', 'uboot-boot-scr', '', d)}
 
 DEPENDS += "u-boot-mkimage-native atf-native"
-SRC_URI_append =  " file://0001-mmc-avoid-division-by-zero-in-meson_mmc_config_clock.patch"
+SRC_URI_append_odroid =  " file://0001-mmc-avoid-division-by-zero-in-meson_mmc_config_clock.patch"
 
 SRC_URI_append_odroid-c2 = "\
     file://odroid-c2/aml_encrypt_gxb \
@@ -25,4 +25,8 @@ do_compile_append_odroid-c2 () {
         dd if=${B}/${UBOOT_BINARY}.tmp of=${B}/${UBOOT_BINARY} bs=512 skip=96
 }
 
-COMPATIBLE_MACHINE = "(odroid-c2|odroid-xu3|odroid-xu4|odroid-xu3-lite|odroid-hc1)"
+COMPATIBLE_MACHINE_odroid-c2  = "odroid-c2"
+COMPATIBLE_MACHINE_odroid-xu3  = "odroid-xu3"
+COMPATIBLE_MACHINE_odroid-xu4  = "odroid-xu4"
+COMPATIBLE_MACHINE_odroid-xu3-lite  = "odroid-xu3-lite"
+COMPATIBLE_MACHINE_odroid-hc1  = "odroid-hc1"
