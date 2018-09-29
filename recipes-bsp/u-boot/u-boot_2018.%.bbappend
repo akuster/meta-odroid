@@ -1,7 +1,10 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/u-boot:"
-USE_BOOTSRC ?= "0"
 
-inherit ${@bb.utils.contains('SOC_FAMILY', 'odroid', 'uboot-boot-scr', '', d)}
+inherit ${@oe.utils.conditional('MACHINE', 'odroid-xu4', 'uboot-boot-scr', '', d)}
+inherit ${@oe.utils.conditional('MACHINE', 'odroid-xu3', 'uboot-boot-scr', '', d)}
+inherit ${@oe.utils.conditional('MACHINE', 'odroid-c2', 'uboot-boot-scr', '', d)}
+inherit ${@oe.utils.conditional('MACHINE', 'odroid-hc1', 'uboot-boot-scr', '', d)}
+inherit ${@oe.utils.conditional('MACHINE', 'odroid-xu3-lite', 'uboot-boot-scr', '', d)}
 
 DEPENDS += "u-boot-mkimage-native atf-native"
 SRC_URI_append_odroid =  " file://0001-mmc-avoid-division-by-zero-in-meson_mmc_config_clock.patch"
