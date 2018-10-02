@@ -44,4 +44,5 @@ do_install () {
 }
 
 RDEPENDS_${PN} = "kernel-module-mali-utgard"
+RDEPENDS_${PN}_remove_odroid-c2-hardkernel = "kernel-module-mali-utgard"
 COMPATIBLE_MACHINE = "odroid-c2"
