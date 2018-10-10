@@ -52,4 +52,3 @@ do_compile_append_odroid-c2 () {
 }
 
 COMPATIBLE_MACHINE = "(odroid-c2)"
-UBOOT_MACHINE_odroid-c2 = "odroidc2_config"
