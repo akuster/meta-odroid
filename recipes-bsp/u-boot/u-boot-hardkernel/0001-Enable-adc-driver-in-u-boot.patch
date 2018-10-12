@@ -1,0 +1,24 @@
+From c626348644e82433969b054f734df576ab50821e Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 9 Oct 2018 17:08:26 -0700
+Subject: [PATCH] Enable adc driver in u-boot
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ configs/odroidc2_defconfig |   1 +
+ 1 files changed, 1 insertion(+)
+
+Index: git/include/configs/odroidc2.h
+===================================================================
+--- git.orig/include/configs/odroidc2.h
++++ git/include/configs/odroidc2.h
+@@ -257,6 +257,9 @@
+ #define CONFIG_SYS_I2C_SPEED		400000	// kHz
+ #endif
+ 
++/* ADC */
++#define CONFIG_CMD_SARADC		1
++
+ /* MISC */
+ #define CONFIG_EFUSE			1
+ #define CONFIG_NEED_BL301		1

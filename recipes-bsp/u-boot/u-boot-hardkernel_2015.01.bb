@@ -18,6 +18,7 @@ BRANCH = "odroidc2-v2015.01"
 SRC_URI = "${UBOOT_REPO_URI};branch=${BRANCH} \
            file://odroid-c2-hardkernel/boot.ini \
            https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/aarch64-linux-gnu/gcc-linaro-${LINAROTOOLCHAIN}-x86_64_aarch64-linux-gnu.tar.xz;name=aarch64toolchain;subdir=git \
+           file://0001-Enable-adc-driver-in-u-boot.patch \
  "
 SRC_URI[aarch64toolchain.md5sum] = "631c4c7b1fe9cb115cf51bd6a926acb7"
 SRC_URI[aarch64toolchain.sha256sum] = "d1f2761b697e6b49f5db1ec0cd48d2fd98224be8cb5ef182093f691e99c923eb"
