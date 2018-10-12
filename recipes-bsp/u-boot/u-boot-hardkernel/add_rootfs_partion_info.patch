@@ -1,0 +1,19 @@
+Add root to u-boot environment partition, this can then be manipulated from
+userspace as well as from u-boot cmdline for toggling default root partition
+
+-Khem
+Index: git/include/configs/odroidc2.h
+===================================================================
+--- git.orig/include/configs/odroidc2.h
++++ git/include/configs/odroidc2.h
+@@ -292,8 +292,9 @@
+ 	"fdt_high=0x20000000\0"		\
+ 	"hdmimode=custombuilt\0"		\
+ 	"cecconfig=cec0xf\0"		\
++	"root=/dev/mmcblk0p2\0"		\
+ 	ENV_PXE_DEFAULT			\
+-	"bootargs=root=/dev/mmcblk0p2 rw init=/init rootwait "	\
++	"bootargs=root=${root} rw init=/init rootwait "	\
+ 		"console=ttyS0,115200 "				\
+ 		"hdmimode=custombuilt hdmitx=cecf "		\
+ 		"logo=osd1,loaded,0x3f800000,custombuilt "		\
