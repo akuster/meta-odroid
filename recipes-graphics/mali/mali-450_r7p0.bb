@@ -29,6 +29,13 @@ do_install () {
 		cp -av --no-preserve=ownership ${S}/lib/arm64/r7p0/m450/wayland/drm/*.so ${D}${libdir}
 		cp -av --no-preserve=ownership ${S}/include/EGL_platform/platform_wayland/* ${D}${includedir}/EGL
 		cp -av --no-preserve=ownership ${S}/lib/libwayland*.so* ${D}${libdir}
+		sed -ie "s#0.99#1.0.0#" ${D}${libdir}/pkgconfig/wayland-egl.pc
+		mv ${D}${includedir}/EGL/gbm/gbm.h ${D}${includedir}
+		rmdir ${D}${includedir}/EGL/gbm
+		mv ${D}${libdir}/pkgconfig/gbm/gbm.pc ${D}${libdir}/pkgconfig
+		rmdir ${D}${libdir}/pkgconfig/gbm
+	else
+		rm -rf ${D}${libdir}/pkgconfig/wayland-egl.pc
 	fi
 	if [ "${USE_DFB}" = "yes" ]; then
 		cp -av --no-preserve=ownership ${S}/lib/arm64/r7p0/m450/fbdev/*.so ${D}${libdir}
@@ -41,6 +48,7 @@ do_install () {
 	ln -sf libMali.so ${D}/${libdir}/libOpenCL.so
 }
 
-RDEPENDS_${PN} = "kernel-module-mali-utgard"
+RDEPENDS_${PN} += "kernel-module-mali-utgard libffi"
+RDEPENDS_${PN} += "${@bb.utils.contains("DISTRO_FEATURES", "wayland", "wayland", " ", d)}"
 RDEPENDS_${PN}_remove_odroid-c2-hardkernel = "kernel-module-mali-utgard"
 COMPATIBLE_MACHINE = "odroid-c2"
