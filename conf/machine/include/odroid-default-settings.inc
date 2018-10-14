@@ -2,11 +2,17 @@
 SOC_FAMILY .= ":odroid"
 
 PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
-XSERVER ?= "xserver-xorg \
-           xf86-input-evdev \
-           xf86-input-mouse \
-           xf86-video-fbdev \
-           xf86-input-keyboard"
+XSERVER = " \
+    xserver-xorg \
+    xf86-video-fbdev \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'xserver-xorg-extension-glx', '', d)} \
+    ${@bb.utils.contains('MACHINE_FEATURES', 'mali', 'xserver-xorg-module-exa', '', d)} \
+    xf86-input-evdev \
+    xf86-input-mouse \
+    xf86-input-keyboard \
+    xf86-video-modesetting \
+    xserver-xorg-module-libint10 \
+"
 
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-stable"
 PREFERRED_VERSION_linux-stable ?= "4.18%"

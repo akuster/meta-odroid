@@ -26,13 +26,7 @@ PREFERRED_PROVIDER_virtual/libopencl = "${PREFERRED_PROVIDER_virtual/gpu}"
 PREFERRED_PROVIDER_virtual/libgl = "${VIRTUAL-RUNTIME_mesa}"
 PREFERRED_PROVIDER_virtual/mesa = "${VIRTUAL-RUNTIME_mesa}"
 
-XSERVER = " \
-    xserver-xorg \
-    xf86-video-fbdev \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'xserver-xorg-extension-glx', '', d)} \
-    xf86-input-evdev \
-    xf86-input-mouse \
-    xf86-input-keyboard \
-    xf86-video-modesetting \
-    xserver-xorg-module-libint10 \
+XSERVER_append = " \
+    ${@bb.utils.contains('MACHINE_FEATURES', 'mali', 'xf86-video-armsoc', '', d)} \
 "
+
