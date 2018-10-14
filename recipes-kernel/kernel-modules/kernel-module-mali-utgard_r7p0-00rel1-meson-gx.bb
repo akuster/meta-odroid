@@ -1,7 +1,5 @@
 require kernel-module-mali-utgard.inc
 
-DEFAULT_PREFERENCE = "-1"
-
 LIC_FILES_CHKSUM = "file://driver/src/devicedrv/mali/readme.txt;md5=92d15b487d204ace57072c48697b4a89"
 
 BRANCH="DX910-SW-99002-r7p0-00rel1_meson_gx"

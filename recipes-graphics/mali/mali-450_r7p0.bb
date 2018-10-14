@@ -1,7 +1,5 @@
 require mali.inc
 
-DEFAULT_PREFERENCE = "-1"
-
 DESCRIPTION = "Mali 450 GPU Binaries for ODROID-C2"
 
 LIC_FILES_CHKSUM = "file://${S}/../../../../README.md;md5=b4d850abae9a934f53b165f0c71518b2"
