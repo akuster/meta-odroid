@@ -25,6 +25,7 @@ SRC_URI = "${UBOOT_REPO_URI};branch=${BRANCH} \
            file://0001-Enabling-support-for-Amlogic-Hardware-Watchdog-with-.patch \
            file://0002-Replaced-hardcoded-watchdog-timeout-value-with-macro.patch \
            file://0001-makefile-Match-the-bs-and-count-values-with-hardkern.patch \
+           file://0001-odroidc2-Enable-s905-on-chip-watchdog.patch \
 "
 SRC_URI[aarch64toolchain.md5sum] = "631c4c7b1fe9cb115cf51bd6a926acb7"
 SRC_URI[aarch64toolchain.sha256sum] = "d1f2761b697e6b49f5db1ec0cd48d2fd98224be8cb5ef182093f691e99c923eb"

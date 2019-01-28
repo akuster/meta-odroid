@@ -1,0 +1,23 @@
+From 8ccefc90941003af0e83efda7ce0d557570657e6 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 27 Jan 2019 23:03:15 -0800
+Subject: [PATCH] odroidc2: Enable s905 on-chip watchdog
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ configs/odroidc2_defconfig | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/configs/odroidc2_defconfig b/configs/odroidc2_defconfig
+index 0251a8afe8..c3cc041040 100644
+--- a/configs/odroidc2_defconfig
++++ b/configs/odroidc2_defconfig
+@@ -6,3 +6,5 @@ CONFIG_DM_GPIO=y
+ CONFIG_AML_GPIO=y
+ CONFIG_CMD_PXE=y
+ CONFIG_CMD_DHCP=y
++CONFIG_HW_WATCHDOG=y
++CONFIG_AMLOGIC_WATCHDOG=y
+-- 
+2.20.1
+
