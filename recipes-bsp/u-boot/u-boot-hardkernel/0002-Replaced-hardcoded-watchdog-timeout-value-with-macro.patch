@@ -1,0 +1,25 @@
+From 30b5c6abfcaa0b1c8ef9e75d800faddf8d3ca672 Mon Sep 17 00:00:00 2001
+From: Gaurav Pathak <gauravpathak129@gmail.com>
+Date: Wed, 26 Dec 2018 18:59:01 +0530
+Subject: [PATCH 2/2] Replaced hardcoded watchdog timeout value with macro.
+
+---
+ drivers/watchdog/s905_wdt.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/watchdog/s905_wdt.c b/drivers/watchdog/s905_wdt.c
+index a5090aa7eb..1e41d849f9 100644
+--- a/drivers/watchdog/s905_wdt.c
++++ b/drivers/watchdog/s905_wdt.c
+@@ -12,7 +12,7 @@
+ void hw_watchdog_init(void)
+ {
+   printf("HW WDT Timeout %d Seconds\n", WDT_HW_TIMEOUT);
+-  watchdog_init(60 * 1000);
++  watchdog_init(WDT_HW_TIMEOUT * 1000);
+ }
+ 
+ void hw_watchdog_reset(void)
+-- 
+2.20.1
+
