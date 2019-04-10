@@ -4,6 +4,5 @@ PROVIDES_remove  = "${@bb.utils.contains('MACHINE_FEATURES', 'mali', 'virtual/li
 do_install_append_odroid () {
     if [ -n "${@bb.utils.contains('MACHINE_FEATURES', 'mali', 'mali', '', d)}" ]; then
         rm -f ${D}/${libdir}/libwayland-egl.so*
-        rm -f ${D}/${libdir}/pkgconfig/wayland-egl.pc
     fi
 }
