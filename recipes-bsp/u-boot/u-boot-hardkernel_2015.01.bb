@@ -49,7 +49,8 @@ SRC_URI[aarch64linaroelf.sha256sum] = "98b99b7fa2eb268d158639db2a9b8bcb4361e9408
 
 # TAG s905_6.0.1_v3.7
 SRCREV_odroid-c2 = "95264d19d04930f67f10f162df70de447659329d"
-SRCREV_odroid-n2-hardkernel = "99568bc90c4479707bd7d67ab2ace3b29f835b98"
+
+SRCREV_odroid-n2-hardkernel = "travis/odroidn2-25"
 
 PR = "${PV}+git${SRCPV}"
 
@@ -58,28 +59,37 @@ UBOOT_SUFFIX ?= "bin"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 S = "${WORKDIR}/git"
+B = "${S}"
 
 inherit uboot-boot-scr
 
 DEPENDS += "bc-native atf-native"
 
 EXTRA_OEMAKE_odroid-c2 = 'V=1 CROSS_COMPILE=${TOOLCHAIN_PREFIX} HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
-EXTRA_OEMAKE_odroid-n2-hardkernel = 'V=1 CROSS_COMPILE=${TOOLCHAIN_PREFIX} HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
+EXTRA_OEMAKE_odroid-n2-hardkernel = 'V=1 HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
+
 LINAROTOOLCHAIN = "4.9.4-2017.01"
 LINAROTOOLCHAIN_odroid-n2-hardkernel = "4.8-2013.11"
 TOOLCHAIN_PREFIX_odroid-c2 = "aarch64-linux-gnu-"
-TOOLCHAIN_PREFIX_odroid-n2-hardkernel = "aarch64-none-elf-"
 HOST_PREFIX_odroid-c2 = "${TOOLCHAIN_PREFIX}"
-HOST_PREFIX_odroid-n2-hardkernel = "${TOOLCHAIN_PREFIX}"
 
 PATH_prepend_odroid-n2-hardkernel ="${S}/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:${S}/gcc-linaro-arm-none-eabi-4.8-2014.04_linux/bin:"
 PATH_prepend ="${S}/gcc-linaro-${LINAROTOOLCHAIN}-x86_64_aarch64-linux-gnu/bin:"
+
+do_configure_odroid-n2-hardkernel () {
+	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake mrproper
+	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake odroidn2_config
+}
 
 do_configure_append() {
 	cp ${WORKDIR}/${MACHINE}/boot.ini ${B}/
 }
 
-do_compile_append_odroid-c2 () {
+do_compile_odroid-n2-hardkernel () {
+	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake
+}
+
+do_compile_append () {
 	cp ${S}/sd_fuse/u-boot.bin ${B}/${UBOOT_BINARY}
 }
 
