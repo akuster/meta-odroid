@@ -14,7 +14,7 @@ SRC_URI = "http://openlinux.amlogic.com:8000/download/GPL_code_release/ThirdPart
 SRC_URI[md5sum] = "441f89136e4fc1137214610aff0f7021"
 SRC_URI[sha256sum] = "8ec00f3fa38b4af9b07b8a1d6ce0d68bda8124279586f5087acb24c658307b65"
 
-inherit cmake pkgconfig distro_features_check
+inherit cmake pkgconfig features_check
 # depends on virtual/egl
 REQUIRED_DISTRO_FEATURES = "opengl x11"
 
