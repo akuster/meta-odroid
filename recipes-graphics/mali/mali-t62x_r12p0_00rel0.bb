@@ -42,13 +42,9 @@ do_install () {
 		ln -sf libwayland-egl.so.1 ${D}/${libdir}/libwayland-egl.so
 	fi
 }
-INHIBIT_SYSROOT_STRIP = "1"
-
 FILES_${PN} = "${libdir}/lib*.so*"
 
 RDEPENDS_${PN} += "kernel-module-mali-t62x"
-RDEPENDS_${PN}_class-native = ""
  
-COMPATIBLE_MACHINE_class-target = "odroid-xu3|odroid-xu3-lite|odroid-xu4"
-BBCLASSEXTEND = "native nativesdk"
+COMPATIBLE_MACHINE = "odroid-xu3|odroid-xu3-lite|odroid-xu4"
 
