@@ -1,0 +1,100 @@
+From 68578e13d82f813567001dffb273a20c8b50ec4c Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 5 May 2020 01:13:44 -0700
+Subject: [PATCH] Disable warnings found with gcc9
+
+Upstream-Status: Pending
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ drivers/amlogic/efuse/Makefile                         | 5 ++++-
+ drivers/amlogic/media/common/codec_mm/configs/Makefile | 2 +-
+ drivers/amlogic/media/vout/cvbs/Makefile               | 4 +++-
+ drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/Makefile  | 1 +
+ drivers/net/wireless/rtl8812au/Makefile                | 1 +
+ fs/f2fs/Makefile                                       | 2 +-
+ mm/Makefile                                            | 2 ++
+ 7 files changed, 13 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/amlogic/efuse/Makefile b/drivers/amlogic/efuse/Makefile
+index dc54b67dae61..6bd350a0d06d 100644
+--- a/drivers/amlogic/efuse/Makefile
++++ b/drivers/amlogic/efuse/Makefile
+@@ -10,4 +10,7 @@ ifneq ($(CONFIG_ARM64),y)
+ 	endif
+ else
+ obj-$(CONFIG_AMLOGIC_EFUSE) += efuse_hw64.o efuse64.o
+-endif
+\ No newline at end of file
++endif
++
++CFLAGS_efuse64.o += "-Wno-error=stringop-overflow"
++
+diff --git a/drivers/amlogic/media/common/codec_mm/configs/Makefile b/drivers/amlogic/media/common/codec_mm/configs/Makefile
+index c95b63ba958c..ae9af909d796 100644
+--- a/drivers/amlogic/media/common/codec_mm/configs/Makefile
++++ b/drivers/amlogic/media/common/codec_mm/configs/Makefile
+@@ -11,4 +11,4 @@
+ obj-$(CONFIG_AMLOGIC_MEDIA_CODEC_MM)	+= configs.o configs_module.o
+ obj-$(CONFIG_AMLOGIC_MEDIA_CODEC_MM)	+= configs_test.o
+ 
+-
++CFLAGS_configs.o += "-Wno-error=stringop-overflow"
+diff --git a/drivers/amlogic/media/vout/cvbs/Makefile b/drivers/amlogic/media/vout/cvbs/Makefile
+index 0107e2843282..c9f2cc0ecebc 100644
+--- a/drivers/amlogic/media/vout/cvbs/Makefile
++++ b/drivers/amlogic/media/vout/cvbs/Makefile
+@@ -1,4 +1,6 @@
+ obj-$(CONFIG_AMLOGIC_CVBS_OUTPUT) += cvbs_out.o cvbs_out_reg.o enc_clk_config.o
+ obj-$(CONFIG_AMLOGIC_WSS)	+= wss.o
+ 
+-ccflags-y += -Idrivers/amlogic/display/
+\ No newline at end of file
++ccflags-y += -Idrivers/amlogic/display/
++
++EXTRA_CFLAGS += "-Wno-error=stringop-overflow="
+diff --git a/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/Makefile b/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/Makefile
+index fb425f8716c4..03f3859b4acb 100644
+--- a/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/Makefile
++++ b/drivers/amlogic/media/vout/hdmitx/hdmi_tx_20/Makefile
+@@ -6,3 +6,4 @@ hdmitx20-objs := hdmi_tx_main.o hdmi_tx_video.o hdmi_tx_audio.o hdmi_tx_edid.o \
+ obj-$(CONFIG_AMLOGIC_HDMITX) += hw/
+ 
+ #EXTRA_CFLAGS += -O2
++EXTRA_CFLAGS += "-Wno-error=stringop-overflow="
+diff --git a/drivers/net/wireless/rtl8812au/Makefile b/drivers/net/wireless/rtl8812au/Makefile
+index 2844a37e716e..4668bd4156e6 100644
+--- a/drivers/net/wireless/rtl8812au/Makefile
++++ b/drivers/net/wireless/rtl8812au/Makefile
+@@ -16,6 +16,7 @@ EXTRA_CFLAGS += -Wno-unused-function
+ #EXTRA_CFLAGS += -Wno-unused
+ 
+ #EXTRA_CFLAGS += -Wno-uninitialized
++EXTRA_CFLAGS += -Wno-error=maybe-uninitialized
+ 
+ EXTRA_CFLAGS += -I$(src)/include
+ 
+diff --git a/fs/f2fs/Makefile b/fs/f2fs/Makefile
+index 1ab46c628454..30697a6b7aeb 100644
+--- a/fs/f2fs/Makefile
++++ b/fs/f2fs/Makefile
+@@ -1,6 +1,6 @@
+ obj-$(CONFIG_F2FS_FS) += f2fs.o
+ 
+-EXTRA_CFLAGS 	+= -Wno-maybe-uninitialized -Wno-unused-variable
++EXTRA_CFLAGS 	+= -Wno-maybe-uninitialized -Wno-unused-variable -Wno-error=stringop-overflow
+ 
+ f2fs-y		:= dir.o file.o inode.o namei.o hash.o super.o inline.o
+ f2fs-y		+= checkpoint.o gc.o data.o node.o segment.o recovery.o
+diff --git a/mm/Makefile b/mm/Makefile
+index 295bd7a9f76b..40a88b0a4d01 100644
+--- a/mm/Makefile
++++ b/mm/Makefile
+@@ -100,3 +100,5 @@ obj-$(CONFIG_IDLE_PAGE_TRACKING) += page_idle.o
+ obj-$(CONFIG_FRAME_VECTOR) += frame_vector.o
+ obj-$(CONFIG_DEBUG_PAGE_REF) += debug_page_ref.o
+ obj-$(CONFIG_HARDENED_USERCOPY) += usercopy.o
++
++CFLAGS_vmscan.o += "-Wno-error=array-bounds"
+-- 
+2.26.2
+
