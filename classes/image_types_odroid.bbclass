@@ -58,6 +58,10 @@ generic_odroid_n2_wic_cmd() {
     dd if=${DEPLOY_DIR_IMAGE}/u-boot.bin of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 seek=1
 }
 
+generic_odroid_c4_wic_cmd() {
+    dd if=${DEPLOY_DIR_IMAGE}/u-boot.bin of=$out${IMAGE_NAME_SUFFIX}.wic conv=fsync,notrunc bs=512 seek=1
+}
+
 IMAGE_CMD_wic_append_odroid-n2-hardkernel() {
     generic_odroid_n2_wic_cmd
 }
@@ -65,3 +69,8 @@ IMAGE_CMD_wic_append_odroid-n2-hardkernel() {
 IMAGE_CMD_wic_append_odroid-n2() {
     generic_odroid_n2_wic_cmd
 }
+
+IMAGE_CMD_wic_append_odroid-c4() {
+    generic_odroid_c4_wic_cmd
+}
+
