@@ -1,0 +1,44 @@
+From bcac5f2e70e5c2bb2ffb6d354f8534d896ac9bd2 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 6 May 2020 14:51:45 -0700
+Subject: [PATCH] ODROID-C4: Enable LCD and Touchscreen
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson64_odroidc4.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson64_odroidc4.dts b/arch/arm64/boot/dts/amlogic/meson64_odroidc4.dts
+index aa182237dee4..f303b2cd9390 100644
+--- a/arch/arm64/boot/dts/amlogic/meson64_odroidc4.dts
++++ b/arch/arm64/boot/dts/amlogic/meson64_odroidc4.dts
+@@ -987,7 +987,7 @@
+ 	};
+ 
+ 	spidev@0 {
+-		status = "okay";
++		status = "disabled";
+ 
+ 		compatible = "linux,spidev";
+ 		/* spi default max clock 100Mhz */
+@@ -997,7 +997,7 @@
+ 
+ 	/* SPI 3.2" Touch Screen Define */
+ 	ads7846@1 {
+-		status = "disabled";
++		status = "okay";
+ 
+ 		spi-max-frequency = <1000000>;
+ 
+@@ -1020,7 +1020,7 @@
+ 	};
+ 
+ 	hktft32@0 {
+-		status = "disabled";
++		status = "okay";
+ 		compatible = "odroid,hktft32";
+ 		reg = <0>;
+ 		pinctrl-names = "hktft32";
+-- 
+2.26.2
+
