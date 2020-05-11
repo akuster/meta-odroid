@@ -21,7 +21,7 @@ O_KERNEL_CONFIG_odroid-n2-hardkernel  = "odroid-n2-hardkernel"
 SRC_URI_append_odroid-n2-hardkernel ?= "file://${O_KERNEL_CONFIG}/defconfig"
 
 SRC_URI_append_odroid-c4-hardkernel = "\
-    file://0001-Disable-warnings-found-with-gcc9.patch \
+    file://0001-Disable-Werror.patch \
     file://0001-ODROID-C4-Enable-LCD-and-Touchscreen.patch \
 "
 
