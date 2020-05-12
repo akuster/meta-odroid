@@ -18,6 +18,8 @@ KERNEL_EXTRA_FEATURES = ""
 O_KERNEL_CONFIG_odroid-n2-hardkernel  = "odroid-n2-hardkernel"
 
 
+SRC_URI += "file://0001-perf-Make-perf-able-to-build-with-latest-libbfd.patch"
+
 SRC_URI_append_odroid-n2-hardkernel ?= "file://${O_KERNEL_CONFIG}/defconfig"
 
 SRC_URI_append_odroid-c4-hardkernel = "\
