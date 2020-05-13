@@ -16,6 +16,7 @@ SRC_URI_append_odroid = "\
 	file://0010-Re-enable-solid-fill-acceleration.-Check-alu-operati.patch \
 	file://0011-Add-options-to-disable-G2D-and-hardware-mouse-cursor.patch \
 	file://0012-Fix-build.-Enable-full-screen-vsync.patch \
+	file://0013-Fix-unitialized-warning.patch \
 "
 
 CONFFILES_${PN}_odroid = "${sysconfdir}/X11/xorg.conf.d/10-armsoc.conf"

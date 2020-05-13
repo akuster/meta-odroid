@@ -1,0 +1,17 @@
+Initialize the variables to 0
+
+Make gcc10 happy
+
+Upstream-Status: Pending
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+--- a/src/exynos_fimg2d.c
++++ b/src/exynos_fimg2d.c
+@@ -729,7 +729,7 @@ g2d_copy_with_scale(struct g2d_context *
+ 	union g2d_rop4_val rop4;
+ 	union g2d_point_val pt;
+ 	unsigned int scale, repeat_pad;
+-	unsigned int scale_x, scale_y;
++	unsigned int scale_x = 0, scale_y = 0;
+ 
+ 	/* Sanitize this parameter to facilitate space computation below. */
+ 	if (negative)
