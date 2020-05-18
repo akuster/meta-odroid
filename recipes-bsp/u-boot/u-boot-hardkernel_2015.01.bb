@@ -12,7 +12,6 @@ LIC_FILES_CHKSUM = "file://Licenses/gpl-2.0.txt;md5=b234ee4d69f5fce4486a80fdaf4a
 
 USE_BOOTSCR = "0"
 USE_BOOTSCR_odroid-n2 = "1"
-USE_BOOTSCR_odroid-c4-hardkernel = "1"
 
 UBOOT_MACHINE_odroid-c2 = "odroidc2_defconfig"
 UBOOT_MACHINE_odroid-c4-hardkernel = "odroidc4_defconfig"
@@ -28,7 +27,7 @@ COMMON_SRC_URI = "git://github.com/hardkernel/u-boot.git;branch=${BRANCH}"
 
 SRC_URI_odroid-c2 = "${COMMON_SRC_URI} \
            https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/aarch64-linux-gnu/gcc-linaro-${LINAROTOOLCHAIN}-x86_64_aarch64-linux-gnu.tar.xz;name=aarch64toolchain;subdir=git \
-           file://odroid-c2-hardkernel/boot.ini \
+           file://boot.ini \
            file://0001-Enable-adc-driver-in-u-boot.patch \
            file://add_rootfs_partion_info.patch \
            file://0001-Enabling-support-for-Amlogic-Hardware-Watchdog-with-.patch \
@@ -38,7 +37,7 @@ SRC_URI_odroid-c2 = "${COMMON_SRC_URI} \
           "
 SRC_URI_odroid-c4-hardkernel = "\
     ${COMMON_SRC_URI} \
-    file://odroid-c4-hardkernel/boot.ini \
+    file://boot.ini \
     https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz;name=aarch64linaro;subdir=git \
     https://releases.linaro.org/archive/14.04/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2014.04_linux.tar.xz;name=aarch64linaroelf;subdir=git \
     "
@@ -46,7 +45,7 @@ SRC_URI_odroid-c4-hardkernel = "\
 
 SRC_URI_odroid-n2-hardkernel = "\
     ${COMMON_SRC_URI} \
-    file://odroid-n2-hardkernel/boot.ini \
+    file://boot.ini \
     https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz;name=aarch64linaro;subdir=git \
     https://releases.linaro.org/archive/14.04/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2014.04_linux.tar.xz;name=aarch64linaroelf;subdir=git \
     "
