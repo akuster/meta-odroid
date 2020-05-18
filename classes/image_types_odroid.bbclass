@@ -70,6 +70,10 @@ IMAGE_CMD_wic_append_odroid-n2() {
     generic_odroid_n2_wic_cmd
 }
 
+IMAGE_CMD_wic_append_odroid-c4-hardkernel() {
+    generic_odroid_c4_wic_cmd
+}
+
 IMAGE_CMD_wic_append_odroid-c4() {
     generic_odroid_c4_wic_cmd
 }
