@@ -118,12 +118,10 @@ do_configure_odroid-n2 () {
 	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake odroidn2_config
 }
 
-do_configure_odroid-n2-hardkernel_append() {
-	cp ${WORKDIR}/${MACHINE}/boot.ini ${B}/
-}
-
-do_configure_odroid-c4-hardkernel_append() {
-	cp ${WORKDIR}/${MACHINE}/boot.ini ${B}/
+do_configure_append() {
+	if [ -e ${WORKDIR}/boot.ini ]; then
+		cp ${WORKDIR}/boot.ini ${B}/
+	fi
 }
 
 do_compile_odroid-c4-hardkernel () {
