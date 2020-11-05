@@ -67,7 +67,7 @@ SRC_URI[aarch64linaroelf.sha256sum] = "98b99b7fa2eb268d158639db2a9b8bcb4361e9408
 
 # TAG s905_6.0.1_v3.7
 SRCREV_odroid-c2 = "95264d19d04930f67f10f162df70de447659329d"
-SRCREV_odroid-c4-hardkernel = "94642644e8d50fe3f40b8f3806b2e743651d8ec1"
+SRCREV_odroid-c4-hardkernel = "12c58e94e533b85a19d2f83d1c0a34345764ca07"
 
 SRCREV_odroid-n2-hardkernel = "odroidn2-v2015.01"
 SRCREV_odroid-n2 = "ca5bdd0f1c291d1ec135cd134e01aa2619203d4c"
