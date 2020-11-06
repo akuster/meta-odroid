@@ -38,6 +38,7 @@ SRC_URI_odroid-c2 = "${COMMON_SRC_URI} \
 SRC_URI_odroid-c4-hardkernel = "\
     ${COMMON_SRC_URI} \
     file://boot.ini \
+    file://config.ini \
     https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz;name=aarch64linaro;subdir=git \
     https://releases.linaro.org/archive/14.04/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2014.04_linux.tar.xz;name=aarch64linaroelf;subdir=git \
     "
@@ -122,6 +123,9 @@ do_configure_append() {
 	if [ -e ${WORKDIR}/boot.ini ]; then
 		cp ${WORKDIR}/boot.ini ${B}/
 	fi
+	if [ -e ${WORKDIR}/config.ini ]; then
+		cp ${WORKDIR}/config.ini ${B}/
+	fi
 }
 
 do_compile_odroid-c4-hardkernel () {
@@ -139,6 +143,21 @@ do_compile_odroid-n2 () {
 
 do_compile_append () {
 	cp ${S}/sd_fuse/u-boot.bin ${B}/${UBOOT_BINARY}
+}
+
+do_install_append() {
+	if [ -e ${B}/config.ini ]; then
+		install -m 644 ${B}/config.ini ${D}/boot/config-${MACHINE}-${PV}-${PR}.${UBOOT_ENV_SUFFIX}
+		ln -sf config-${MACHINE}-${PV}-${PR}.${UBOOT_ENV_SUFFIX} ${D}/boot/config.ini
+	fi
+}
+
+do_deploy_append() {
+	if [ -e ${B}/config.ini ]; then
+		install -m 644 ${B}/config.ini ${DEPLOYDIR}/config-${MACHINE}-${PV}-${PR}.${UBOOT_ENV_SUFFIX}
+                rm -f ${DEPLOYDIR}/config.ini
+		ln -sf config-${MACHINE}-${PV}-${PR}.${UBOOT_ENV_SUFFIX} ${DEPLOYDIR}/config.ini
+	fi
 }
 
 COMPATIBLE_MACHINE = "(odroid-c2|odroid-c4-hardkernel|odroid-n2-hardkernel|odroid-n2)"
