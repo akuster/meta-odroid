@@ -2,7 +2,7 @@
 # Boot partitions already done
 
 # Boot env partition (100M)
-part --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --align 1024 --fixed-size 100
+part --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --align 4096 --fixed-size 16
 
 # Rootfs partition
 part --source rootfs --ondisk mmcblk0 --fstype=ext4 --label rootfs --align 4096

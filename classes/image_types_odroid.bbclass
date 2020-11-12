@@ -55,7 +55,8 @@ IMAGE_CMD_wic_append_odroid-c2() {
 }
 
 generic_odroid_n2_wic_cmd() {
-    dd if=${DEPLOY_DIR_IMAGE}/u-boot.bin of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 seek=1
+    dd if=${DEPLOY_DIR_IMAGE}/${UBOOT_BINARY} of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 skip=1 seek=1
+    dd if=${DEPLOY_DIR_IMAGE}/${UBOOT_BINARY} of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=1 count=444
 }
 
 generic_odroid_c4_wic_cmd() {
