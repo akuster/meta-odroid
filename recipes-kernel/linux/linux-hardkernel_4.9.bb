@@ -7,7 +7,7 @@ KBRANCH ?= "odroidn2-4.9.y"
 KBRANCH_odroid-c4-hardkernel ?= "odroidg12-4.9.y"
 
 SRCREV ?= "c1116eecfb0a085f813ad8925b083e7ffaa7d7d7"
-SRCREV_odroid-c4-hardkernel = "6ad97dceb7a0b9758f5de02c35cd42037b2483cc"
+SRCREV_odroid-c4-hardkernel = "98163ef0bdc56193872fdaed63b95a93560beec5"
 
 KBUILD_DEFCONFIG_odroid-c4-hardkernel = "odroidg12_defconfig"
 
