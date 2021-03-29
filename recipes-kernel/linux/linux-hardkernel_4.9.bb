@@ -8,6 +8,7 @@ LINUX_VERSION ?= "4.9.241"
 
 EXTRA_OEMAKE_append = " KBUILD=${B}"
 require linux-hardkernel.inc
+SRC_URI_append = " file://oe.scc"
 
 KERNEL_EXTRA_FEATURES = ""
 

@@ -1,0 +1,41 @@
+From 09bb5636643163d9ee78397beb5613bb17d12178 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 28 Mar 2021 22:24:38 -0700
+Subject: [PATCH] Disable misleading-indentation warning
+
+GCC 11 finds some of these warnings anew in amlogic drivers
+ideally the warnings should be fixed but for build purpose
+ignoring it as error is ok
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ Makefile                           | 1 +
+ drivers/media/usb/dvb-usb/Makefile | 1 +
+ 2 files changed, 2 insertions(+)
+
+diff --git a/Makefile b/Makefile
+index bb2e92049d05..5d49ac448739 100644
+--- a/Makefile
++++ b/Makefile
+@@ -390,6 +390,7 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
+ 		   -Werror-implicit-function-declaration \
+ 		   -Wno-format-security \
+ 		   -Werror	\
++		   -Wno-error=misleading-indentation	\
+ 		   -std=gnu89 $(call cc-option,-fno-PIE)
+ 
+ 
+diff --git a/drivers/media/usb/dvb-usb/Makefile b/drivers/media/usb/dvb-usb/Makefile
+index 3b3f32b426d1..1852ee37e185 100644
+--- a/drivers/media/usb/dvb-usb/Makefile
++++ b/drivers/media/usb/dvb-usb/Makefile
+@@ -1,5 +1,6 @@
+ dvb-usb-objs += dvb-usb-firmware.o dvb-usb-init.o dvb-usb-urb.o dvb-usb-i2c.o
+ dvb-usb-objs += dvb-usb-dvb.o dvb-usb-remote.o usb-urb.o
++CFLAGS_dvb-usb-remote.o = -Wno-error=array-parameter
+ obj-$(CONFIG_DVB_USB) += dvb-usb.o
+ 
+ dvb-usb-vp7045-objs := vp7045.o vp7045-fe.o
+-- 
+2.31.1
+
