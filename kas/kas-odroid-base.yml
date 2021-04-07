@@ -11,14 +11,14 @@ repos:
 
   poky:
     url: https://git.yoctoproject.org/git/poky
-    refspec: master
+    refspec: hardknott
     layers:
       meta:
       meta-poky:
 
   meta-openembedded:
     url: http://git.openembedded.org/meta-openembedded
-    refspec: master
+    refspec: hardknott
     layers:
       meta-oe:
 
@@ -30,9 +30,10 @@ repos:
 
 local_conf_header:
   meta-odroid: |
+    BRANCH="hardknott"
     SOURCE_MIRROR_URL = "http://downloads.yoctoproject.org/mirror/sources/"
     SSTATE_MIRRORS = "file://.* http://sstate.yoctoproject.org/dev/PATH;downloadfilename=PATH \n"
-    SSTATE_DIR = "/home/build/sstate-cache/master"
-    DL_DIR = "/home/build/downloads/master"
+    SSTATE_DIR = "/home/build/sstate-cache/${BRANCH}"
+    DL_DIR = "/home/build/downloads/${BRANCH}"
     BB_HASHSERVE = "auto"
     BB_SIGNATURE_HANDLER = "OEEquivHash"
