@@ -5,8 +5,6 @@ stages:
   stage: build
   before_script:
     - export PATH=~/.local/bin:$PATH
-    - export BRANCH=$BRANCH
-    - echo $BRANCH
     - wget https://bootstrap.pypa.io/get-pip.py
     - python3 get-pip.py
     - python3 -m pip install kas
