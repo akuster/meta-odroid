@@ -29,11 +29,6 @@ ODROID-n2-hardkernel
 ODROID-c4-hardkernel
 ODROID-hc4-hardkernel
 
-These new defines  can be added to local.conf or may be in inherited include files:
-PREFERRED_VERSION_gcc = "8.3"
-GCCVERSION = "arm-8.3"
-
-
 This boards still use either Hardkernel u-boot or kernel or both
 ODROID-c1: hard-kernel-uboot
 
@@ -44,17 +39,11 @@ emmc support is not working.
 
 
 
-
 This layer depends on:
 
 URI: git://git.openembedded.org/openembedded-core
 layers: meta
 branch: master
-
-URI: https://git.yoctoproject.org/git/meta-arm
-layers: meta-arm-toolchain
-branch: master
-
 
 Maintenance
 -----------
