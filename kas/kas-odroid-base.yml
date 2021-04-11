@@ -24,7 +24,6 @@ repos:
 
 local_conf_header:
   meta-odroid: |
-    BRANCH="hardknott"
     SOURCE_MIRROR_URL = "http://downloads.yoctoproject.org/mirror/sources/"
     SSTATE_MIRRORS = "file://.* http://sstate.yoctoproject.org/dev/PATH;downloadfilename=PATH \n"
     SSTATE_DIR = "/home/build/sstate-cache/hardknott"
