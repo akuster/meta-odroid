@@ -13,7 +13,7 @@ SRC_URI = "file://odroid-lcd35.service \
 
 inherit systemd update-rc.d
 
-do_install_append () {
+do_install:append () {
    install -D -m 0644 ${WORKDIR}/lcd-blacklist.conf ${D}${sysconfdir}/modprobe.d/lcd-blacklist.conf
    if [ "${@bb.utils.contains("DISTRO_FEATURES", "systemd", "yes", "no", d)}" = "yes" ]; then
        install -D -m 0644 ${WORKDIR}/odroid-lcd35.service ${D}${systemd_unitdir}/system/odroid-lcd35.service
@@ -25,11 +25,11 @@ do_install_append () {
 INITSCRIPT_NAME = "odroid-lcd35"
 INITSCRIPT_PARAMS = "defaults"
 
-SYSTEMD_SERVICE_${PN} = "odroid-lcd35.service"
+SYSTEMD_SERVICE:${PN} = "odroid-lcd35.service"
 
-FILES_${PN} += "${sysconfdir}/modprobe.d"
+FILES:${PN} += "${sysconfdir}/modprobe.d"
 
-RDEPENDS_${PN}_odroid-c2 = "\
+RDEPENDS:${PN}_odroid-c2 = "\
                  kernel-module-aml-i2c \
                  kernel-module-pwm-meson \
                  kernel-module-pwm-ctrl \

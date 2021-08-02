@@ -14,8 +14,8 @@ UBOOT_USB_NET = "1"
 
 WKS_FILE ?= "odroid_xu-u-boot.wks"
 
-MACHINE_FEATURES_append = " alsa screen"
-MACHINE_FEATURES_remove = " ${@bb.utils.contains("TCLIBC", "musl", "mali", "", d)}"
+MACHINE_FEATURES:append = " alsa screen"
+MACHINE_FEATURES:remove = " ${@bb.utils.contains("TCLIBC", "musl", "mali", "", d)}"
 
 VIRTUAL-RUNTIME_mesa = "mesa"
 PREFERRED_PROVIDER_virtual/gpu ?= "${@bb.utils.contains("MACHINE_FEATURES", "mali", "mali-t62x", "mesa", d)}"
@@ -28,7 +28,7 @@ PREFERRED_PROVIDER_virtual/libopencl = "${PREFERRED_PROVIDER_virtual/gpu}"
 PREFERRED_PROVIDER_virtual/libgl = "${VIRTUAL-RUNTIME_mesa}"
 PREFERRED_PROVIDER_virtual/mesa = "${VIRTUAL-RUNTIME_mesa}"
 
-XSERVER_append = " \
+XSERVER:append = " \
     ${@bb.utils.contains('MACHINE_FEATURES', 'x11 mali', 'xf86-video-armsoc', '', d)} \
 "
 

@@ -53,8 +53,8 @@ do_deploy () {
 
 PACKAGES += "${@bb.utils.contains('MACHINE_FEATURES', 'emmc', '${PN}-emmc', '', d)}"
 
-FILES_${PN} = "/boot"
-FILES_${PN}-emmc = "/emmc"
+FILES:${PN} = "/boot"
+FILES:${PN}-emmc = "/emmc"
 
 addtask deploy before do_build after do_compile
 

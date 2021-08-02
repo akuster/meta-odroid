@@ -1,2 +1,2 @@
-INSANE_SKIP_libgstgl-1.0 = "file-rdeps"
-INSANE_SKIP_gstreamer1.0-plugins-base-opengl = "file-rdeps"
+INSANE_SKIP:libgstgl-1.0 = "file-rdeps"
+INSANE_SKIP:gstreamer1.0-plugins-base-opengl = "file-rdeps"

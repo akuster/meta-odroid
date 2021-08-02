@@ -22,7 +22,7 @@ def make_dtb_boot_files(d):
 
     return ' '.join([transform(dtb) for dtb in alldtbs.split(' ') if dtb])
 
-XSERVER_append = " \
+XSERVER:append = " \
     ${@bb.utils.contains('MACHINE_FEATURES', 'mali', 'xserver-xorg-module-exa', '', d)} \
 "
 
@@ -56,8 +56,8 @@ IMAGE_BOOT_FILES ?= "${UBOOT_SCRIPT}"
 
 MACHINE_FEATURES_BACKFILL_CONSIDERED = "rtc"
 
-EXTRA_IMAGEDEPENDS_append = " u-boot secure-odroid"
-EXTRA_IMAGEDEPENDS_append = " ${@bb.utils.contains("DISTRO_FEATURES", "x11", " odroid-edid", " ", d)}"
-IMAGE_INSTALL_append = " kernel-devicetree"
+EXTRA_IMAGEDEPENDS:append = " u-boot secure-odroid"
+EXTRA_IMAGEDEPENDS:append = " ${@bb.utils.contains("DISTRO_FEATURES", "x11", " odroid-edid", " ", d)}"
+IMAGE_INSTALL:append = " kernel-devicetree"
 
 IMAGE_CLASSES += "image_types_odroid"

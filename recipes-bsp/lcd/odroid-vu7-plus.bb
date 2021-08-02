@@ -7,7 +7,7 @@ SRC_URI = "file://odroid-vu7-plus.sysvinit"
 
 inherit update-rc.d
 
-do_install_append () {
+do_install:append () {
        install -D -m 0755 ${WORKDIR}/odroid-vu7-plus.sysvinit ${D}${sysconfdir}/init.d/odroid-vu7-plus
 }
 

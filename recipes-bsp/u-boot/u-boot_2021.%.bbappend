@@ -1,4 +1,4 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/u-boot:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/u-boot:"
 
 inherit ${@oe.utils.conditional('MACHINE', 'odroid-xu4', 'uboot-boot-scr', '', d)}
 inherit ${@oe.utils.conditional('MACHINE', 'odroid-xu3', 'uboot-boot-scr', '', d)}
@@ -8,9 +8,9 @@ inherit ${@oe.utils.conditional('MACHINE', 'odroid-xu3-lite', 'uboot-boot-scr', 
 inherit ${@oe.utils.conditional('MACHINE', 'odroid-n2', 'uboot-boot-scr', '', d)}
 
 DEPENDS += "u-boot-mkimage-native atf-native"
-SRC_URI_append_odroid =  " file://0001-mmc-avoid-division-by-zero-in-meson_mmc_config_clock.patch"
+SRC_URI:append:odroid =  " file://0001-mmc-avoid-division-by-zero-in-meson_mmc_config_clock.patch"
 
-SRC_URI_append_odroid-c2 = "\
+SRC_URI:append:odroid-c2 = "\
     file://odroid-c2/aml_encrypt_gxb \
     file://odroid-c2/bl2.package  \
     file://odroid-c2/bl301.bin \
@@ -19,7 +19,7 @@ SRC_URI_append_odroid-c2 = "\
     file://0001-Add-default-bootargs.patch \
     "
 
-SRC_URI_append_odroid-n2 = "\
+SRC_URI:append:odroid-n2 = "\
     file://odroid-n2/aml_encrypt_g12b \
     file://odroid-n2/bl2.bin \
     file://odroid-n2/bl30.bin \
@@ -37,7 +37,7 @@ SRC_URI_append_odroid-n2 = "\
     file://odroid-n2/acs.bin \
 "
 
-do_compile_append_odroid-c2 () {
+do_compile:append:odroid-c2 () {
 
         fip_create --bl30 ${WORKDIR}/odroid-c2/bl30.bin --bl301 ${WORKDIR}/odroid-c2/bl301.bin --bl31 ${WORKDIR}/odroid-c2/bl31.bin --bl33 ${B}/${UBOOT_BINARY} ${B}/fip.bin
         fip_create --dump ${B}/fip.bin
@@ -47,7 +47,7 @@ do_compile_append_odroid-c2 () {
         dd if=${B}/${UBOOT_BINARY}.tmp of=${B}/${UBOOT_BINARY} bs=512 skip=96
 }
 
-do_compile_append_odroid-n2 () {
+do_compile:append:odroid-n2 () {
     cd ${WORKDIR}/odroid-n2
     chmod +x ./blx_fix.sh
 
@@ -92,18 +92,18 @@ do_compile_append_odroid-n2 () {
         --level v3
 }
 
-do_install_append () {
+do_install:append () {
     if [ -n "${@bb.utils.contains('MACHINE_FEATURES', 'emmc', 'emmc', '', d)}" ]; then
          install -d ${D}/emmc
          install -m 644 ${B}/${UBOOT_BINARY} ${D}/emmc/${UBOOT_IMAGE}
          ln -sf ${UBOOT_IMAGE} ${D}/emmc/${UBOOT_BINARY}
          install -m 644 ${WORKDIR}/boot.scr ${D}/emmc
     fi
-} 
+}
 
 PACKAGES += "${@bb.utils.contains('MACHINE_FEATURES', 'emmc', '${PN}-emmc', '', d)}"
 
-FILES_${PN}-emmc = "/emmc"
+FILES:${PN}-emmc = "/emmc"
 
 COMPATIBLE_MACHINE_odroid-c2  = "odroid-c2"
 COMPATIBLE_MACHINE_odroid-xu3  = "odroid-xu3"

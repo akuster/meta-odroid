@@ -4,7 +4,7 @@ SECTION = "bootloaders"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 PROVIDES += "virtual/bootloader u-boot"
 
@@ -29,15 +29,15 @@ SRC_URI = "\
     https://releases.linaro.org/archive/14.04/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2014.04_linux.tar.xz;name=aarch64linaroelf;subdir=git \
     "
 
-SRC_URI_append_odroid-c4-hardkernel = "\
+SRC_URI:append:odroid-c4-hardkernel = "\
     file://config.ini \
     "
 
-SRC_URI_append_odroid-n2-hardkernel = "\
+SRC_URI:append:odroid-n2-hardkernel = "\
     file://config.ini \
     "
 
-SRC_URI_append_odroid-hc4-hardkernel = "\
+SRC_URI:append:odroid-hc4-hardkernel = "\
     file://config.ini \
     "
 
@@ -71,15 +71,15 @@ LINAROTOOLCHAIN = "4.8-2013.11"
 
 TOOLCHAIN_PREFIX = "aarch64-linux-gnu-"
 
-PATH_prepend ="${S}/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:${S}/gcc-linaro-arm-none-eabi-4.8-2014.04_linux/bin:"
-PATH_prepend ="${S}/gcc-linaro-${LINAROTOOLCHAIN}-x86_64_aarch64-linux-gnu/bin:"
+PATH:prepend ="${S}/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:${S}/gcc-linaro-arm-none-eabi-4.8-2014.04_linux/bin:"
+PATH:prepend ="${S}/gcc-linaro-${LINAROTOOLCHAIN}-x86_64:aarch64-linux-gnu/bin:"
 
 do_configure () {
 	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake mrproper
 	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake ${UBOOT_MACHINE}
 }
 
-do_configure_append() {
+do_configure:append() {
 	if [ -e ${WORKDIR}/boot.ini ]; then
 		cp ${WORKDIR}/boot.ini ${B}/
 	fi
@@ -92,18 +92,18 @@ do_compile () {
 	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake
 }
 
-do_compile_append () {
+do_compile:append () {
 	cp ${S}/sd_fuse/u-boot.bin ${B}/${UBOOT_BINARY}
 }
 
-do_install_append() {
+do_install:append() {
 	if [ -e ${B}/config.ini ]; then
 		install -m 644 ${B}/config.ini ${D}/boot/config-${MACHINE}-${PV}-${PR}.${UBOOT_ENV_SUFFIX}
 		ln -sf config-${MACHINE}-${PV}-${PR}.${UBOOT_ENV_SUFFIX} ${D}/boot/config.ini
 	fi
 }
 
-do_deploy_append() {
+do_deploy:append() {
 	if [ -e ${B}/config.ini ]; then
 		install -m 644 ${B}/config.ini ${DEPLOYDIR}/config-${MACHINE}-${PV}-${PR}.${UBOOT_ENV_SUFFIX}
                 rm -f ${DEPLOYDIR}/config.ini

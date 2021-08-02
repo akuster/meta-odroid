@@ -1,4 +1,4 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/linux-yocto-dev:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/linux-yocto-dev:"
 
 KMACHINE_odroid-c1 = "odroid-c1"
 KMACHINE_odroid-c2 = "odroid-c2"
@@ -9,7 +9,7 @@ KMACHINE_odroid-hc1 = "odroid-hc1"
 KMACHINE_odroid-h2 = "odroid-h2"
 KMACHINE_odroid-n2 = "odroid-n2"
 
-SRC_URI_append = " file://odroid-kmeta;type=kmeta;name=odroid-kmeta;destsuffix=odroid-kmeta"
+SRC_URI:append = " file://odroid-kmeta;type=kmeta;name=odroid-kmeta;destsuffix=odroid-kmeta"
 
 COMPATIBLE_MACHINE_odroid-c1 = "odroid-c1"
 COMPATIBLE_MACHINE_odroid-c2 = "odroid-c2"

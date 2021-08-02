@@ -221,11 +221,11 @@ python create_uboot_boot_txt() {
         bb.fatal('Unable to open %s' % (cfile))
 }
 
-FILES_${PN} += "/*.${UBOOT_ENV_SUFFIX}"
+FILES:${PN} += "/*.${UBOOT_ENV_SUFFIX}"
 
 do_compile[prefuncs] += "create_uboot_boot_txt"
 
-do_compile_append () {
+do_compile:append () {
     if [ "${UBOOT_ENV_SUFFIX}" = "scr" ]; then
         echo "uboot-mkimage -C none -A ${ARCH} -T script -d ${UBOOT_ENV_CONFIG} ${WORKDIR}/${UBOOT_ENV_BINARY}"
         uboot-mkimage -C none -A ${ARCH} -T script -d ${UBOOT_ENV_CONFIG} ${WORKDIR}/${UBOOT_ENV_BINARY}

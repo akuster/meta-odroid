@@ -32,6 +32,6 @@ do_install () {
         rm -fr ${D}${includedir}/KHR
 }
 
-RDEPENDS_${PN} = "kernel-module-mali-utgard"
-RDEPENDS_${PN}_remove_odroid-c2-hardkernel = "kernel-module-mali-utgard"
+RDEPENDS:${PN} = "kernel-module-mali-utgard"
+RDEPENDS:${PN}:remove:odroid-c2-hardkernel = "kernel-module-mali-utgard"
 COMPATIBLE_MACHINE = "odroid-c2"

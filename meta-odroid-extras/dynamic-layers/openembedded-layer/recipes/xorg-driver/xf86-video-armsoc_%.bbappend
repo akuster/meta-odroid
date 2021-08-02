@@ -1,9 +1,9 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
-DEPENDS_append_odroid = " ${@bb.utils.contains('MACHINE_FEATURES', 'mali', 'virtual/gpu', '', d)}"
+DEPENDS:append:odroid = " ${@bb.utils.contains('MACHINE_FEATURES', 'mali', 'virtual/gpu', '', d)}"
 
-SRC_URI_append_odroid = " file://10-armsoc.conf"
-SRC_URI_append_odroid = "\
+SRC_URI:append:odroid = " file://10-armsoc.conf"
+SRC_URI:append:odroid = "\
 	file://0001-Exynos-G2D-EXA-acceleration.patch \
 	file://0002-Batch-copies.-Fix-line-endings.patch \
 	file://0003-Support-16bit-RGB565-blits.patch \
@@ -19,13 +19,13 @@ SRC_URI_append_odroid = "\
 	file://0013-Fix-unitialized-warning.patch \
 "
 
-CONFFILES_${PN}_odroid = "${sysconfdir}/X11/xorg.conf.d/10-armsoc.conf"
+CONFFILES:${PN}:odroid = "${sysconfdir}/X11/xorg.conf.d/10-armsoc.conf"
 
-do_install_append_odroid () {
+do_install:append:odroid () {
         if test -s ${WORKDIR}/10-armsoc.conf; then
                 install -d ${D}/${sysconfdir}/X11/xorg.conf.d
                 install -m 0644 ${WORKDIR}/10-armsoc.conf ${D}/${sysconfdir}/X11/xorg.conf.d
         fi
 }
 
-FILES_{PN}_append_odroid = " ${sysconfdir}/X11/xorg.conf.d"
+FILES:{PN}:append:odroid = " ${sysconfdir}/X11/xorg.conf.d"

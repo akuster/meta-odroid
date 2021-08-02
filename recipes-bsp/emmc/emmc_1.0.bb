@@ -54,9 +54,9 @@ do_install () {
     install ${B}/emmc.sh ${D}/emmc
 }
 
-FILES_${PN} = "/emmc"
+FILES:${PN} = "/emmc"
 
-RDEPENDS_${PN} = "coreutils rsync e2fsprogs parted dosfstools"
+RDEPENDS:${PN} = "coreutils rsync e2fsprogs parted dosfstools"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 

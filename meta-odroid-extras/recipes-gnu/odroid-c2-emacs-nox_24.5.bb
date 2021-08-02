@@ -7,7 +7,7 @@ PR = "r0"
 SRC_URI = "file://odroid-c2-emacs.tar.gz"
 
 S = "${WORKDIR}"
-FILES_${PN}="${prefix}"
+FILES:${PN}="${prefix}"
 
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 INHIBIT_PACKAGE_STRIP = "1"
@@ -15,7 +15,7 @@ PACKAGES= "${PN}"
 
 PR = "r0"
 
-RDEPENDS_${PN} = "bash perl cairo gtk+ libxft libsm libpng libice alsa-lib tiff libxml2 gtk+3"
+RDEPENDS:${PN} = "bash perl cairo gtk+ libxft libsm libpng libice alsa-lib tiff libxml2 gtk+3"
 
 do_install() {
 

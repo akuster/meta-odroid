@@ -25,30 +25,30 @@ generic_odroid_xu_wic_cmd() {
     dd if=/dev/zero of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc count=32 bs=512 seek="2625"
 }
 
-IMAGE_CMD_wic_append_odroid-xu3() {
+IMAGE_CMD:wic:append:odroid-xu3() {
     generic_odroid_xu_wic_cmd
 }
 
-IMAGE_CMD_wic_append_odroid-xu4() {
+IMAGE_CMD:wic:append:odroid-xu4() {
     generic_odroid_xu_wic_cmd
 }
 
-IMAGE_CMD_wic_append_odroid-xu3-lite() {
+IMAGE_CMD:wic:append:odroid-xu3-lite() {
     generic_odroid_xu_wic_cmd
 }
 
-IMAGE_CMD_wic_append_odroid-hc1() {
+IMAGE_CMD:wic:append:odroid-hc1() {
     generic_odroid_xu_wic_cmd
 }
 
-IMAGE_CMD_wic_append_odroid-c1() {
+IMAGE_CMD:wic:append:odroid-c1() {
     dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel   of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=1 count=442
     dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel   of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 skip=1 seek=1
     dd if=${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.${UBOOT_SUFFIX} of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 seek=64
 }
 
 # Write U-Boot before wic generates compressed rootfs for odroid-c2 machine
-IMAGE_CMD_wic_append_odroid-c2() {
+IMAGE_CMD:wic:append:odroid-c2() {
     dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel   of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=1 count=442
     dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel   of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 skip=1 seek=1
     dd if=${DEPLOY_DIR_IMAGE}/u-boot-dtb.bin of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 seek=97
@@ -63,19 +63,18 @@ generic_odroid_c4_wic_cmd() {
     dd if=${DEPLOY_DIR_IMAGE}/u-boot.bin of=$out${IMAGE_NAME_SUFFIX}.wic conv=fsync,notrunc bs=512 seek=1
 }
 
-IMAGE_CMD_wic_append_odroid-n2-hardkernel() {
+IMAGE_CMD:wic:append:odroid-n2-hardkernel() {
     generic_odroid_c4_wic_cmd
 }
 
-IMAGE_CMD_wic_append_odroid-n2() {
+IMAGE_CMD:wic:append:odroid-n2() {
     generic_odroid_n2_wic_cmd
 }
 
-IMAGE_CMD_wic_append_odroid-c4-hardkernel() {
+IMAGE_CMD:wic:append:odroid-c4-hardkernel() {
     generic_odroid_c4_wic_cmd
 }
 
-IMAGE_CMD_wic_append_odroid-c4() {
+IMAGE_CMD:wic:append:odroid-c4() {
     generic_odroid_c4_wic_cmd
 }
-

@@ -193,7 +193,7 @@ do_install () {
     fi
 }
 
-FILES_${PN} = "/boot ${sysconfdir}"
+FILES:${PN} = "/boot ${sysconfdir}"
 
 do_deploy () {
     if [ -n "${UBOOT_CONFIG}" ]

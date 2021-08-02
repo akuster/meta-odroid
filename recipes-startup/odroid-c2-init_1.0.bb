@@ -10,7 +10,7 @@ S = "${WORKDIR}"
 
 PR = "r0"
 
-RDEPENDS_${PN} = "bash"
+RDEPENDS:${PN} = "bash"
 
 do_install() {
     #

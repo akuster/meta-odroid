@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://END_USER_LICENCE_AGREEMENT.txt;md5=3918cc9836ad038c5a
 
 TYPE = "mali-t62x"
 
-DEPENDS_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'virtual/mesa', '', d)}"
+DEPENDS:append = " ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'virtual/mesa', '', d)}"
 
 BRANCH = "mali-t62x_r12p0_00rel0"
 SRCREV = "595cb959b48ccc1b9154fac5988191a1c3fffe3b"
@@ -42,9 +42,9 @@ do_install () {
 		ln -sf libwayland-egl.so.1 ${D}/${libdir}/libwayland-egl.so
 	fi
 }
-FILES_${PN} = "${libdir}/lib*.so*"
+FILES:${PN} = "${libdir}/lib*.so*"
 
-RDEPENDS_${PN} += "kernel-module-mali-t62x"
+RDEPENDS:${PN} += "kernel-module-mali-t62x"
  
 COMPATIBLE_MACHINE = "odroid-xu3|odroid-xu3-lite|odroid-xu4"
 

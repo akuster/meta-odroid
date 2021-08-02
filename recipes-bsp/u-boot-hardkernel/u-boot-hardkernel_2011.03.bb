@@ -23,11 +23,11 @@ SRC_URI = " \
     file://0001-gcc-7-fix.patch \
 "
 
-SRC_URI_append = " ${@bb.utils.contains('TUNE_FEATURES','callconvention-hard',' file://0002-added-hardfp-support.patch ','',d)}"
+SRC_URI:append = " ${@bb.utils.contains('TUNE_FEATURES','callconvention-hard',' file://0002-added-hardfp-support.patch ','',d)}"
 
 PARALLEL_MAKE = ""
 
-do_compile_append () {
+do_compile:append () {
     # Move result to usual location
     mv ${B}/sd_fuse/${UBOOT_BINARY} ${B}
 }
@@ -37,7 +37,7 @@ BL1_IMAGE ?= "bl1-${MACHINE}-${PV}-${PR}.${BL1_SUFFIX}"
 BL1_BINARY ?= "bl1.${BL1_SUFFIX}"
 BL1_SYMLINK ?= "bl1-${MACHINE}.${BL1_SUFFIX}"
 
-do_deploy_append () {
+do_deploy:append () {
     install ${S}/sd_fuse/${BL1_BINARY} ${DEPLOYDIR}/${BL1_IMAGE}
 
     cd ${DEPLOYDIR}

@@ -3,4 +3,4 @@
 SOC_FAMILY = "amlogic:meson-gx"
 require conf/machine/include/amlogic-meson.inc
 
-XSERVER_append = " xserver-xf86-config"
+XSERVER:append = " xserver-xf86-config"
