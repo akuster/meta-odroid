@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0-only;md5=801f80980d171d
 
 S = "${WORKDIR}"
 
-SRC_URI_odroid-c2 = "file://odroid-c2/bl1.bin.hardkernel"
+SRC_URI:odroid-c2 = "file://odroid-c2/bl1.bin.hardkernel"
 
 SRC_URI = "\
     file://bl1.bin.hardkernel \
@@ -17,7 +17,7 @@ do_patch[noexec] = "1"
 do_configure[noexec] = "1"
 do_compile[noexec] = "1"
 
-do_install_odroid-c2 () {
+do_install:odroid-c2 () {
 	install -d ${D}/boot
     	install -m 755  ${S}/odroid-c2/bl1.bin.hardkernel ${D}/boot
 }
@@ -39,7 +39,7 @@ do_install () {
 
 inherit deploy
 
-do_deploy_odroid-c2 () {
+do_deploy:odroid-c2 () {
     install -d ${DEPLOYDIR}
     install -m 755  ${S}/odroid-c2/bl1.bin.hardkernel ${DEPLOYDIR}
 }

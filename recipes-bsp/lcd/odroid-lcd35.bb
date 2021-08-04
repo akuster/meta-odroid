@@ -29,7 +29,7 @@ SYSTEMD_SERVICE:${PN} = "odroid-lcd35.service"
 
 FILES:${PN} += "${sysconfdir}/modprobe.d"
 
-RDEPENDS:${PN}_odroid-c2 = "\
+RDEPENDS:${PN}:odroid-c2 = "\
                  kernel-module-aml-i2c \
                  kernel-module-pwm-meson \
                  kernel-module-pwm-ctrl \

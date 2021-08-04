@@ -11,12 +11,12 @@ PROVIDES += "virtual/bootloader u-boot"
 LIC_FILES_CHKSUM = "file://Licenses/gpl-2.0.txt;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 USE_BOOTSCR = "0"
-USE_BOOTSCR_odroid-n2 = "1"
+USE_BOOTSCR:odroid-n2 = "1"
 
-UBOOT_MACHINE_odroid-c4-hardkernel = "odroidc4_defconfig"
-UBOOT_MACHINE_odroid-n2-hardkernel = "odroidn2_defconfig"
-UBOOT_MACHINE_odroid-n2 = "odroidn2_defconfig"
-UBOOT_MACHINE_odroid-hc4-hardkernel = "odroidc4_defconfig"
+UBOOT_MACHINE:odroid-c4-hardkernel = "odroidc4_defconfig"
+UBOOT_MACHINE:odroid-n2-hardkernel = "odroidn2_defconfig"
+UBOOT_MACHINE:odroid-n2 = "odroidn2_defconfig"
+UBOOT_MACHINE:odroid-hc4-hardkernel = "odroidc4_defconfig"
 
 BRANCH = "odroidg12-v2015.01"
 

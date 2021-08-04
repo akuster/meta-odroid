@@ -105,9 +105,9 @@ PACKAGES += "${@bb.utils.contains('MACHINE_FEATURES', 'emmc', '${PN}-emmc', '', 
 
 FILES:${PN}-emmc = "/emmc"
 
-COMPATIBLE_MACHINE_odroid-c2  = "odroid-c2"
-COMPATIBLE_MACHINE_odroid-xu3  = "odroid-xu3"
-COMPATIBLE_MACHINE_odroid-xu4  = "odroid-xu4"
-COMPATIBLE_MACHINE_odroid-xu3-lite  = "odroid-xu3-lite"
-COMPATIBLE_MACHINE_odroid-hc1  = "odroid-hc1"
-COMPATIBLE_MACHINE_odroid-n2  = "odroid-n2"
+COMPATIBLE_MACHINE:odroid-c2  = "odroid-c2"
+COMPATIBLE_MACHINE:odroid-xu3  = "odroid-xu3"
+COMPATIBLE_MACHINE:odroid-xu4  = "odroid-xu4"
+COMPATIBLE_MACHINE:odroid-xu3-lite  = "odroid-xu3-lite"
+COMPATIBLE_MACHINE:odroid-hc1  = "odroid-hc1"
+COMPATIBLE_MACHINE:odroid-n2  = "odroid-n2"

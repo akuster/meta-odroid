@@ -54,5 +54,5 @@ do_install () {
 
 RDEPENDS:${PN} += "kernel-module-mali-utgard libffi"
 RDEPENDS:${PN} += "${@bb.utils.contains("DISTRO_FEATURES", "wayland", "wayland", " ", d)}"
-RDEPENDS:${PN}:remove_odroid-c2-hardkernel = "kernel-module-mali-utgard"
+RDEPENDS:${PN}:remove:odroid-c2-hardkernel = "kernel-module-mali-utgard"
 COMPATIBLE_MACHINE = "odroid-c2"
