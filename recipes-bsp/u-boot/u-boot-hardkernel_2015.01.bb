@@ -12,6 +12,7 @@ LIC_FILES_CHKSUM = "file://Licenses/gpl-2.0.txt;md5=b234ee4d69f5fce4486a80fdaf4a
 
 USE_BOOTSCR = "0"
 USE_BOOTSCR:odroid-n2 = "1"
+UBOOT_ROOT_mmc = "mmcblk0p2 ${UBOOT_ROOT_ARGS}"
 
 UBOOT_MACHINE:odroid-c4-hardkernel = "odroidc4_defconfig"
 UBOOT_MACHINE:odroid-n2-hardkernel = "odroidn2_defconfig"

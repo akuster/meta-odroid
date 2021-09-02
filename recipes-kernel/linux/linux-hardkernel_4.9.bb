@@ -9,8 +9,7 @@ LINUX_VERSION ?= "4.9.241"
 EXTRA_OEMAKE:append = " KBUILD=${B}"
 require linux-hardkernel.inc
 SRC_URI:append = " file://oe.scc"
-
-KERNEL_EXTRA_FEATURES = ""
+KERNEL_FEATURES:remove = "cfg/fs/vfat.scc"
 
 do_install:prepend() {
     bbnote "custom kernel_do_install customization"
