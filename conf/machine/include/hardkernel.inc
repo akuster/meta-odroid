@@ -28,5 +28,5 @@ IMAGE_BOOT_FILES = "${UBOOT_SCRIPT} ${KERNEL_IMAGETYPE} ${@make_dtb_boot_files(d
 # Review these blacklists when using > 4.9 kernel since they might work and need for
 # blacklisting not required
 
-PNBLACKLIST[kernel-selftest] = "kernel-selftest-1.0/tools/testing/selftests/bpf: No such file or directory."
-PNBLACKLIST[perf] = "needs python2 with kernel 4.9"
+SKIP_RECIPE[kernel-selftest] = "kernel-selftest-1.0/tools/testing/selftests/bpf: No such file or directory."
+SKIP_RECIPE[perf] = "needs python2 with kernel 4.9"
