@@ -1,7 +1,7 @@
 require recipes-bsp/u-boot/u-boot.inc
 DESCRIPTION = "Odroid C2/C4/N2 boot loader supported by the hardkernel product"
 SECTION = "bootloaders"
-LICENSE = "GPLv2"
+LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"

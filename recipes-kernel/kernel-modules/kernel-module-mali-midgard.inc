@@ -1,5 +1,5 @@
 SUMMARY = "Open Source Mali Midgard GPU Kernel Drivers"
-LICENSE = "GPLv2"
+LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://driver/product/kernel/license.txt;md5=13e14ae1bd7ad5bff731bba4a31bb510"
 
 inherit module

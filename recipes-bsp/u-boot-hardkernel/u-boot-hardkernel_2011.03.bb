@@ -1,5 +1,5 @@
 require u-boot-hardkernel.inc
-LICENSE="GPLv2"
+LICENSE="GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=1707d6db1d42237583f50183a5651ecb"
 
 UBOOT_REPO_URI ?= "git://github.com/hardkernel/u-boot.git;branch=master;protocol=https"
