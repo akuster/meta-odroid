@@ -1,0 +1,43 @@
+From 4d51cd0080a25c12fe0f75d7e5a7b5776c8fc1a5 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 13 Oct 2022 15:32:16 -0700
+Subject: [PATCH] fix build with gcc 12
+
+Disable address warnings on selected files. This helps in fixing build
+with gcc 12
+
+Upstream-Status: Pending
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ Makefile                                                | 1 -
+ kernel/sched/Makefile                                   | 2 +-
+ 6 files changed, 7 insertions(+), 3 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index f9d8157adc37..37e032f8f020 100644
+--- a/Makefile
++++ b/Makefile
+@@ -389,7 +389,6 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
+ 		   -fno-strict-aliasing -fno-common -fshort-wchar \
+ 		   -Werror-implicit-function-declaration \
+ 		   -Wno-format-security -Wno-misleading-indentation \
+-		   -Werror	\
+ 		   -Wno-error=misleading-indentation	\
+ 		   -std=gnu89 $(call cc-option,-fno-PIE)
+ 
+diff --git a/kernel/sched/Makefile b/kernel/sched/Makefile
+index c9dbe935bd24..39080cac7a55 100644
+--- a/kernel/sched/Makefile
++++ b/kernel/sched/Makefile
+@@ -12,7 +12,7 @@ ifneq ($(CONFIG_SCHED_OMIT_FRAME_POINTER),y)
+ # me.  I suspect most platforms don't need this, but until we know that for sure
+ # I turn this off for IA-64 only.  Andreas Schwab says it's also needed on m68k
+ # to get a correct value for the wait-channel (WCHAN in ps). --davidm
+-CFLAGS_core.o := $(PROFILING) -fno-omit-frame-pointer
++CFLAGS_core.o := $(PROFILING) -fno-omit-frame-pointer -Wno-error=address
+ endif
+ 
+ obj-y += core.o loadavg.o clock.o cputime.o
+-- 
+2.38.0
+
