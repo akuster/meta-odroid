@@ -8,7 +8,7 @@ LINUX_VERSION ?= "5.10.27"
 EXTRA_OEMAKE:append = " KBUILD=${B}"
 require linux-hardkernel.inc
 LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
-SRC_URI = "git://github.com/tobetter/linux.git;branch=${KBRANCH} \
+SRC_URI = "git://github.com/tobetter/linux.git;branch=${KBRANCH};protocol=https \
 "
 
 SRC_URI:append = " file://defconfig"
