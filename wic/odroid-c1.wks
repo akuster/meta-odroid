@@ -1,7 +1,7 @@
 # short-description: Create SD card image for Hardkernel ODROID-C1 board
 # Boot partitions already done
 
-part --source bootimg-partition --ondisk mmcblk --fstype=vfat --label boot --active --align 4096 --size 16
-part --source rootfs --ondisk mmcblk --fstype=ext4 --label root --align 4096
+part --source bootimg-partition --ondisk mmcblk --fstype=vfat --label boot --active --align 4 --size 16
+part --source rootfs --ondisk mmcblk --fstype=ext4 --label root --align 4
 
 bootloader --ptable msdos
