@@ -51,7 +51,7 @@ SRC_URI[aarch64linaro.sha256sum] = "603ef1733c40361767d62ba9786cf6d373f5787822d3
 SRC_URI[aarch64linaroelf.md5sum] = "12d6e8a0cbd2d8e130cc8f55389a95c3"
 SRC_URI[aarch64linaroelf.sha256sum] = "98b99b7fa2eb268d158639db2a9b8bcb4361e94087bd2ce29f26199bd09cf459"
 
-SRCREV = "b112cd23a95b5f80c169aceda1bc7dc78e2ebbc2"
+SRCREV = "154ddfc826e72c902232169b676b2a4e59c75171"
 
 PR = "${PV}+git${SRCPV}"
 
