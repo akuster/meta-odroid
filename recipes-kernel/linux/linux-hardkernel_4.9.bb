@@ -3,8 +3,8 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}-${PV}:"
 KBRANCH = "odroidg12-4.9.y"
 KBUILD_DEFCONFIG = "odroidg12_defconfig"
 
-SRCREV = "7ac09e96abb5cb137eda3839a07248d157471edd"
-LINUX_VERSION ?= "4.9.312"
+SRCREV = "f45d4950d18198999da4a751d8f28253da51837d"
+LINUX_VERSION ?= "4.9.337"
 
 EXTRA_OEMAKE:append = " KBUILD=${B}"
 require linux-hardkernel.inc
