@@ -22,4 +22,4 @@ MACHINE_FEATURES:append = " serial usbgadget usbhost ext2"
 
 MACHINE_FEATURES_BACKFILL_CONSIDERED = "rtc"
 
-IMAGE_FSTYPES ?= " ext4 wic wic.xz"
+IMAGE_FSTYPES ?= " ext4 wic wic.xz wic.bmap"
