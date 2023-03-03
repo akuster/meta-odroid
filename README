@@ -27,6 +27,7 @@ you will need to remove petitboot from the SPI flash if you want u-boot to be ex
 
 x86-64:
 ODROID-h2
+ODROID-h3
 
 Hardkernel
 ################################################################

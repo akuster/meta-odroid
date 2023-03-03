@@ -126,3 +126,13 @@ odroid-h2-x11:
   extends: .x86
   script:
   - kas build --target odroid-x11-image kas/$CI_JOB_NAME.yml
+
+odroid-h3:
+  extends: .x86
+  script:
+  - kas build --target core-image-minimal kas/$CI_JOB_NAME.yml
+
+odroid-h3-x11:
+  extends: .x86
+  script:
+  - kas build --target odroid-x11-image kas/$CI_JOB_NAME.yml

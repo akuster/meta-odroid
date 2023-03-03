@@ -1,0 +1,7 @@
+header:
+  version: 1
+  includes:
+    - kas-odroid-base.yml
+
+machine: odroid-h3
+distro: poky
