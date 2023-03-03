@@ -18,12 +18,6 @@ LINUX_VERSION_EXTENSION ?= "-odroid"
 # Do not update fstab file when using wic images
 WIC_CREATE_EXTRA_ARGS ?= "--no-fstab-update"
 
-# wic default support
-WKS_FILE_DEPENDS ?= " \
-    e2fsprogs-native \
-    bmap-tools-native \
-"
-
 MACHINE_FEATURES:append = " serial usbgadget usbhost ext2"
 
 MACHINE_FEATURES_BACKFILL_CONSIDERED = "rtc"
