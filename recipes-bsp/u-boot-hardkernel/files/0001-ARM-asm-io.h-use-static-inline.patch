@@ -3,6 +3,7 @@ From: Armin Kuster <akuster808@gmail.com>
 Date: Sat, 7 May 2016 12:17:37 -0700
 Subject: [PATCH] ARM:asm:io.h use static inline
 
+Upstream-Status: Pending
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
  arch/arm/include/asm/io.h | 12 ++++++------

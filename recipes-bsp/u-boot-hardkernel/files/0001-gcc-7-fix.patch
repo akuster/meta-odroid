@@ -3,6 +3,7 @@ From: Armin Kuster <akuster@mvista.com>
 Date: Sat, 23 Sep 2017 11:28:13 -0700
 Subject: [PATCH] gcc 7 fix
 
+Upstream-Status: Pending
 Signed-off-by: Armin Kuster <akuster@mvista.com>
 ---
  include/linux/compiler-gcc.h | 266 ++++++++++++++++++++++++++++++++++++------

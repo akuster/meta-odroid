@@ -3,6 +3,7 @@ From: Armin Kuster <akuster808@gmail.com>
 Date: Sat, 7 May 2016 12:21:43 -0700
 Subject: [PATCH] compile: add gcc5
 
+Upstream-Status: Pending
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
  include/linux/compiler-gcc5.h | 65 +++++++++++++++++++++++++++++++++++++++++++

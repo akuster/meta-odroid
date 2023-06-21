@@ -3,6 +3,7 @@ From: Armin Kuster <akuster808@gmail.com>
 Date: Sat, 7 May 2016 12:30:29 -0700
 Subject: [PATCH] main: fix inline issue
 
+Upstream-Status: Pending
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
  common/main.c | 2 +-

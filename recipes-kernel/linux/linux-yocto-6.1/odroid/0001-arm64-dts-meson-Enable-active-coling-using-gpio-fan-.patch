@@ -8,6 +8,7 @@ Odroid N2/N2+ support active cooling via gpio-fan controller.
 Add fan controls and tip point for cpu and ddr thermal sensor
 on this boards.
 
+Upstream-Status: Backport [https://lore.kernel.org/r/20221021050906.1158-1-linux.amoon@gmail.com]
 Signed-off-by: Anand Moon <linux.amoon@gmail.com>
 Link: https://lore.kernel.org/r/20221021050906.1158-1-linux.amoon@gmail.com
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>

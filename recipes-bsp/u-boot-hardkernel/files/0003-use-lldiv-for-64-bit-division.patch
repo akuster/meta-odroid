@@ -8,6 +8,7 @@ Otherwise u-boot will crash with
 
 The original Patch was from Ilya Yanok yanok@emcraft.com
 
+Upstream-Status: Pending
 Signed-off-by: Christian Ege <k4230r6@gmail.com>
 ---
  drivers/mmc/aml_sd_mmc.c |    3 ++-

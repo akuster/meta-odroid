@@ -1,3 +1,7 @@
+Add bl30 and bl301 firmware image headers
+
+Upstream-Status: Pending
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
 Index: git/include/common/firmware_image_package.h
 ===================================================================
 --- git.orig/include/common/firmware_image_package.h

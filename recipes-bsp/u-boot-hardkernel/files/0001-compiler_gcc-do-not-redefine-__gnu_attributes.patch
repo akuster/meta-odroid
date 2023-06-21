@@ -13,6 +13,7 @@ these macros to suppress these warnings.
 This patch ignores the checkpatch warning:
 WARNING: __packed is preferred over __attribute__((packed))
 
+Upstream-Status: Pending
 Signed-off-by: Jeroen Hofstee <jeroen@myspectrum.nl>
 ---
  include/linux/compiler-gcc.h  | 12 +++++++++---

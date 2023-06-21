@@ -1,3 +1,10 @@
+Fix osd build
+
+Control osd_vf_prov definition by CONFIG_AM_VIDEO
+
+Upstream-Status: Pending
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+
 Index: git/drivers/video/osd/m8_osd_hw.c
 ===================================================================
 --- git.orig/drivers/video/osd/m8_osd_hw.c

@@ -3,6 +3,7 @@ From: Armin Kuster <akuster808@gmail.com>
 Date: Sat, 7 May 2016 12:47:12 -0700
 Subject: [PATCH] usb: use define not func
 
+Upstream-Status: Pending
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
  common/usb.c  | 4 ++--

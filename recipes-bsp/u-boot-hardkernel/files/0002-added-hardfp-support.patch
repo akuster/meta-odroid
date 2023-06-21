@@ -1,3 +1,8 @@
+Add hardfp to compile options
+
+Upstream-Status: Pending
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+
 Index: git/arch/arm/cpu/aml_meson/config.mk
 ===================================================================
 --- git.orig/arch/arm/cpu/aml_meson/config.mk

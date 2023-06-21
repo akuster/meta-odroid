@@ -7,6 +7,7 @@ GCC 11 finds some of these warnings anew in amlogic drivers
 ideally the warnings should be fixed but for build purpose
 ignoring it as error is ok
 
+Upstream-Status: Pending
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
  Makefile                           | 1 +

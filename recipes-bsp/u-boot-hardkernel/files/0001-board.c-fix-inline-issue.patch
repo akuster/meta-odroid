@@ -3,6 +3,7 @@ From: Armin Kuster <akuster808@gmail.com>
 Date: Sat, 7 May 2016 12:27:47 -0700
 Subject: [PATCH] board.c: fix inline issue
 
+Upstream-Status: Pending
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
  arch/arm/lib/board.c | 18 +++++++++---------

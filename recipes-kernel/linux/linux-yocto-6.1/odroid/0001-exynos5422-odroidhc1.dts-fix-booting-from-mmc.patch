@@ -3,6 +3,7 @@ From: Armin Kuster <akuster@mvista.com>
 Date: Fri, 23 Mar 2018 09:02:44 -0700
 Subject: [PATCH] exynos5422-odroidhc1.dts: fix booting from mmc
 
+Upstream-Status: Pending
 Signed-off-by: Armin Kuster <akuster@mvista.com>
 ---
  arch/arm/boot/dts/exynos5422-odroidhc1.dts | 37 ++++++++++++++++++++++++++++++

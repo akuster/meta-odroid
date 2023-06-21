@@ -17,6 +17,7 @@ are removed from ODROID-N2PLUS based on S922X SoC.
 - IR remote receiver is removed
 - MIPI DSI port is added new but not yet supported
 
+Upstream-Status: Pending
 Signed-off-by: Dongjin Kim <tobetter@gmail.com>
 Link: https://lore.kernel.org/r/20230122-topic-odroid-n2l-upstream-initial-v2-3-8d3fea6d403d@linaro.org
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>

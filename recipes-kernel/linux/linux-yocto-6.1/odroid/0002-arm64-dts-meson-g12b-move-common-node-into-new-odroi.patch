@@ -9,6 +9,7 @@ without some on-board peripherals (Ethernet, RTC, Hub, Jack),
 move the common nodes into a new meson-g12b-odroid.dtsi which will
 will be the common dtsi for all the Odroid-N2 derived boards.
 
+Upstream-Status: Pending
 Link: https://lore.kernel.org/r/20230122-topic-odroid-n2l-upstream-initial-v2-2-8d3fea6d403d@linaro.org
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 (cherry picked from commit 379ae64609c7a3301b60483eb65bd8bc78f76328)
