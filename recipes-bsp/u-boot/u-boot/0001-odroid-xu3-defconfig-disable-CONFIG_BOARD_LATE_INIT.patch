@@ -7,7 +7,7 @@ the 2023 now wont boot unless that config option is off.
 
 cros-ec communications failure -96
 
-Upstream-Status: Inappropriate[configuration]
+Upstream-Status: Inappropriate [configuration]
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
@@ -26,6 +26,5 @@ index 7593d1fbcd..1e57fa3cee 100644
  CONFIG_MISC_INIT_R=y
  CONFIG_SYS_PBSIZE=1024
  CONFIG_CMD_THOR_DOWNLOAD=y
--- 
+--
 2.25.1
-
