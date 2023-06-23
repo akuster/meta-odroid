@@ -9,6 +9,7 @@ KMACHINE:odroid-hc1 = "odroid-hc1"
 KMACHINE:odroid-h2 = "odroid-h2"
 KMACHINE:odroid-h3 = "odroid-h3"
 KMACHINE:odroid-n2 = "odroid-n2"
+KMACHINE:odroid-m1 = "odroid-m1"
 
 SRC_URI:append = " file://odroid-kmeta;type=kmeta;name=odroid-kmeta;destsuffix=odroid-kmeta"
 
@@ -21,3 +22,4 @@ COMPATIBLE_MACHINE:odroid-hc1 = "odroid-hc1"
 COMPATIBLE_MACHINE:odroid-h2 = "odroid-h2"
 COMPATIBLE_MACHINE:odroid-h3 = "odroid-h3"
 COMPATIBLE_MACHINE:odroid-n2 = "odroid-n2"
+COMPATIBLE_MACHINE:odroid-m1 = "odroid-m1"

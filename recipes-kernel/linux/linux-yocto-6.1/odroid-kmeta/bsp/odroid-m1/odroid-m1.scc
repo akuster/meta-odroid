@@ -1,0 +1,12 @@
+define KMACHINE odroid-m1
+define KTYPE standard
+define KARCH arm64
+
+kconf hardware odroid-m1.cfg
+
+include ktypes/standard/standard.scc
+
+include bsp/rockchip/rockchip-rk3568.scc
+
+include features/mtd/mtd.scc
+include features/leds/leds.scc

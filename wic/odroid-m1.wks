@@ -1,0 +1,9 @@
+# short-description: Create eMMC image for Hardkernel ODROID-M1 board
+
+# Boot partition (100M)
+part --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --align 1024 --fixed-size 100 --use-uuid
+
+# Rootfs partition
+part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label rootfs --align 4096 --use-uuid
+
+bootloader --ptable gpt --timeout=5

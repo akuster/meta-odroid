@@ -1,0 +1,7 @@
+header:
+  version: 13
+  includes:
+    - kas-odroid-base.yml
+
+machine: odroid-m1
+distro: poky

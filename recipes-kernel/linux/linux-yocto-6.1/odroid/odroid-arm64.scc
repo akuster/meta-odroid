@@ -1,3 +1,4 @@
 patch 0001-arm64-dts-meson-Enable-active-coling-using-gpio-fan-.patch
 patch 0002-arm64-dts-meson-g12b-move-common-node-into-new-odroi.patch
 patch 0003-arm64-dts-meson-g12b-odroid-Add-initial-support-for-.patch
+patch 0004-Add-support-for-the-Hardkernel-ODROID-M1-board.patch

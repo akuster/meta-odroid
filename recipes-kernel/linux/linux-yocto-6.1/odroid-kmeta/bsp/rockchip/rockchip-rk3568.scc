@@ -1,0 +1,11 @@
+define KFEATURE_DESCRIPTION "Devices/drivers commonly used on Odroid Rockchip systems/boards"
+
+kconf hardware rockchip-rk3568.cfg
+
+include features/mmc/mmc-block.scc
+include features/i2c/i2c.scc
+include features/usb/uhci-hcd.scc
+include features/spi/spi.scc
+include features/input/input.scc
+include features/pwm/pwm.scc
+include features/pci/pci.scc

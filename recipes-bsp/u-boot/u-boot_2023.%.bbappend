@@ -9,8 +9,11 @@ inherit ${@oe.utils.conditional('MACHINE', 'odroid-n2', 'uboot-boot-scr', '', d)
 inherit ${@oe.utils.conditional('MACHINE', 'odroid-c4', 'uboot-boot-scr', '', d)}
 inherit ${@oe.utils.conditional('MACHINE', 'odroid-hc4', 'uboot-boot-scr', '', d)}
 inherit ${@oe.utils.conditional('MACHINE', 'odroid-n2l', 'uboot-boot-scr', '', d)}
+inherit ${@oe.utils.conditional('MACHINE', 'odroid-m1', 'uboot-boot-scr', '', d)}
 
 DEPENDS += "u-boot-mkimage-native atf-native"
+DEPENDS:append:odroid-m1 = " ${PYTHON_PN}-pyelftools-native"
+
 SRC_URI:append:odroid =  " file://0001-mmc-avoid-division-by-zero-in-meson_mmc_config_clock.patch \
                            file://0001-odroid-xu3-defconfig-disable-CONFIG_BOARD_LATE_INIT.patch \
                          "
@@ -84,6 +87,16 @@ SRC_URI:append:odroid-hc4 = "${S905X3_uboot}"
 
 SRC_URI:append:odroid-n2 = "${odroid-n2_uboot}"
 SRC_URI:append:odroid-n2l = "${odroid-n2l_uboot}"
+
+SRC_URI:append:odroid-m1 = "\
+    file://odroid-m1/rk3568_bl31.elf \
+    file://odroid-m1/rk3568_ddr_1560MHz.bin \
+"
+
+do_compile:prepend:odroid-m1 () {
+    export BL31="${WORKDIR}/odroid-m1/rk3568_bl31.elf"
+    export ROCKCHIP_TPL="${WORKDIR}/odroid-m1/rk3568_ddr_1560MHz.bin"
+}
 
 do_compile:append:odroid-c2 () {
 
@@ -260,3 +273,4 @@ COMPATIBLE_MACHINE:odroid-n2  = "odroid-n2"
 COMPATIBLE_MACHINE:odroid-c4  = "odroid-c4"
 COMPATIBLE_MACHINE:odroid-hc4  = "odroid-hc4"
 COMPATIBLE_MACHINE:odroid-n2l  = "odroid-n2l"
+#COMPATIBLE_MACHINE:odroid-m1  = "odroid-m1"
