@@ -41,8 +41,6 @@ UBOOT_LOAD_CMD ?= "ext4load"
 UBOOT_BOOT_CMD ?= "bootz"
 
 UBOOT_BOOTPART ?= "2"
-UBOOT_ROOTDEV ?= "1"
-UBOOT_ROOTPART ?= "2"
 UBOOT_BOOTTYPE ?= "mmc"
 BOOT_PREFIX ?= "boot/"
 

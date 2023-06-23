@@ -3,8 +3,6 @@
 # This provides a method to create a boot.ini or boot.scr files to help
 # configure u-boot at boot up time
 #
-# UBOOT_FDT_FILE: default device tree. e.g., "KERNEL_DEVICETREE"
-#
 # UBOOT_FDT_LOADADDR: default Device tree load address, e.g., "0x01000000"
 #
 # UBOOT_INITRD_NAME: default initrd image name, e.g., "uInitrd"
@@ -15,21 +13,17 @@
 #
 # UBOOT_LOAD_CMD: default partition, e.g., "load"
 #
-# UBOOT_BOOTARGS: 
+# UBOOT_BOOTARGS:
 #
 # UBOOT_BOOTPART: default boot partition #
-# 
+#
 # UBOOT_BOOTTYPE: default mmc
-#
-# UBOOT_ROOTDEV: default root device #
-#
-# UBOOT_ROOTPART: default root device #
 #
 # UBOOT_FILE_TITLE: default partition, e.g., "UBOOT-CONFIG"
 #
 # UBOOT_EXTRA_ENV: default add extra env vars , e.g., "vout,'vga'"
 #
-# Copyright (C) 2017, Armin Kuster <akuster808@gmail.com> 
+# Copyright (C) 2017, Armin Kuster <akuster808@gmail.com>
 # All Rights Reserved Released under the MIT license (see packages/COPYING)
 #
 inherit kernel-arch
@@ -56,8 +50,6 @@ UBOOT_ROOT_nfs ?= "nfs ${UBOOT_ROOT_ARGS}"
 
 UBOOT_CONSOLE ?= ""
 UBOOT_BOOTPART ?= "1"
-UBOOT_ROOTDEV ?= ""
-UBOOT_ROOTPART ?= "2"
 UBOOT_BOOT_CMD ?= ""
 
 UBOOT_LOAD_CMD ?= "load"
@@ -82,7 +74,7 @@ UBOOT_BOOT_TYPE ?= ""
 UBOOT_NETBOOT ?= ""
 UBOOT_BOOTPATH ?= "${MACHINE}"
 
-USING_NFS = "${@bb.utils.contains_any('UBOOT_BOOT_TYPE', 'nfs', '1', '', d)}" 
+USING_NFS = "${@bb.utils.contains_any('UBOOT_BOOT_TYPE', 'nfs', '1', '', d)}"
 
 python create_uboot_boot_txt() {
     if d.getVar("USE_BOOTSCR") != "1":
@@ -129,7 +121,7 @@ python create_uboot_boot_txt() {
 
             console = localdata.getVar('UBOOT_CONSOLE')
             if console:
-                cfgfile.write('setenv console \"%s\" \n' % console) 
+                cfgfile.write('setenv console \"%s\" \n' % console)
 
             root = localdata.getVar('UBOOT_ROOT')
             cfgfile.write('setenv root \"root=/dev/%s\"\n' % root)
@@ -174,7 +166,7 @@ python create_uboot_boot_txt() {
 
             initrd = localdata.getVar('UBOOT_INITRD_NAME')
             if initrd:
-                cfgfile.write('setenv initrdname  \"%s\"\n' % initrd) 
+                cfgfile.write('setenv initrdname  \"%s\"\n' % initrd)
 
             kerneladdr = localdata.getVar('UBOOT_LOADADDRESS')
             kernelname = localdata.getVar('UBOOT_KERNEL_NAME')
@@ -228,4 +220,3 @@ do_compile:append () {
         cp ${UBOOT_ENV_CONFIG} ${WORKDIR}/${UBOOT_ENV_BINARY}
     fi
 }
-
