@@ -11,7 +11,7 @@
 #
 # UBOOT_CONSOLE: default console, e.g.,  "ttyttySAC2,115200"
 #
-# UBOOT_LOAD_CMD: default partition, e.g., "load"
+# UBOOT_LOAD_CMD: default load command, e.g., "load"
 #
 # UBOOT_BOOTARGS:
 #
@@ -19,7 +19,7 @@
 #
 # UBOOT_BOOTTYPE: default mmc
 #
-# UBOOT_FILE_TITLE: default partition, e.g., "UBOOT-CONFIG"
+# UBOOT_FILE_TITLE: u-boot script title, e.g., "UBOOT-CONFIG"
 #
 # UBOOT_EXTRA_ENV: default add extra env vars , e.g., "vout,'vga'"
 #
