@@ -13,4 +13,4 @@ UBOOT_FDT_LOADADDR ?= "0x01000000"
 UBOOT_BOOT_CMD ?= "booti"
 UBOOT_KERNEL_NAME ?= "Image"
 
-UBOOT_ROOT_mmc ?= "mmcblk0p2 ${UBOOT_ROOT_ARGS}"
+UBOOT_ROOT ?= "mmcblk0p2"

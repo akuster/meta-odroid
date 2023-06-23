@@ -42,8 +42,7 @@ UBOOT_INITRD_NAME ?= ""
 UBOOT_INITRD_ADDR ?= "-"
 UBOOT_ROOT_ARGS ?= "rw rootwait"
 UBOOT_NFS_ARGS ?= ",tcp,v3,wsize=8192,rsize=8192"
-UBOOT_ROOT_mmc ?= "mmcblk1p2 ${UBOOT_ROOT_ARGS}"
-UBOOT_ROOT_nfs ?= "nfs ${UBOOT_ROOT_ARGS}"
+UBOOT_ROOT ?= "mmcblk1p2"
 
 UBOOT_CONSOLE ?= ""
 UBOOT_BOOTPART ?= "1"
@@ -67,11 +66,8 @@ UBOOT_ETHADDR ?= ""
 UBOOT_HOSTNAME ?="${MACHINE}"
 UBOOT_ROOTPATH ?= "${NFS_ROOT}${MACHINE}"
 UBOOT_USB_NET ?= "0"
-UBOOT_BOOT_TYPE ?= ""
 UBOOT_NETBOOT ?= ""
 UBOOT_BOOTPATH ?= "${MACHINE}"
-
-USING_NFS = "${@bb.utils.contains_any('UBOOT_BOOT_TYPE', 'nfs', '1', '', d)}"
 
 python create_uboot_boot_txt() {
     if d.getVar("USE_BOOTSCR") != "1":
@@ -85,12 +81,6 @@ python create_uboot_boot_txt() {
         bb.fatal('Unable to read UBOOT_ENV_CONFIG')
 
     localdata = bb.data.createCopy(d)
-
-    if localdata.getVar("USING_NFS"):
-        localdata.setVar('UBOOT_ROOT', localdata.getVar('UBOOT_ROOT_nfs'))
-    else:
-        localdata.setVar('UBOOT_ROOT', localdata.getVar('UBOOT_ROOT_mmc'))
-
 
     try:
         with open(cfile, 'w') as cfgfile:
@@ -121,7 +111,8 @@ python create_uboot_boot_txt() {
                 cfgfile.write('setenv console \"%s\" \n' % console)
 
             root = localdata.getVar('UBOOT_ROOT')
-            cfgfile.write('setenv root \"root=/dev/%s\"\n' % root)
+            rootargs = localdata.getVar('UBOOT_ROOT_ARGS')
+            cfgfile.write('setenv root \"root=/dev/%s %s\"\n' % (root, rootargs))
 
             bootargs = localdata.getVar('UBOOT_BOOTARGS')
 
