@@ -24,7 +24,7 @@ ODROID-N2
 ODROID-N2+ *
 ODROID-C4 *
 ODROID-HC4 *
-This board requires the boot switch to be pressed while powering up or 
+This board requires the boot switch to be pressed while powering up or
 you will need to remove petitboot from the SPI flash if you want u-boot to be executed.
 ODROID-N2L
 
@@ -36,7 +36,7 @@ ODROID-h3+ *
 Hardkernel
 ################################################################
 These boards use Hardkernel's u-boot and kernel. Building u-boot
-requires gcc 8.x native which we get from meta-arm-toolchain: 
+requires gcc 8.x native which we get from meta-arm-toolchain:
 If you want to build the Hardkernel u-boot, they created a docker image to help.
 https://wiki.odroid.com/odroid-n2/software/using_docker
 
@@ -48,12 +48,13 @@ ODROID-hc4-hardkernel
 
 This boards still use either Hardkernel u-boot or kernel or both
 ODROID-c1: hard-kernel-uboot
+ODROID-M1: hard-kernel-uboot
 
 OBSOLETE:
 #############################################################
 These boards are no longer being sold by Hardkernel, These may be dropped in a future release:
 
-Amlogic; 
+Amlogic;
 Odroid-c1
 Odroid-C2
 Odroid-N2
@@ -70,7 +71,6 @@ TODO:
 ##############################################################
 
 Arm64:
-ODROID-M1 *
 ODROID-GO-SUPER
 ODROID-GO-ULTRA
 
@@ -79,10 +79,10 @@ ODROID-GO-ULTRA
 Mali
 ################################################################
 Mali support may not work on 4.19 so you may want to use hardkernel.
-Mali support is not the easiest to support. If you find support missing, 
+Mali support is not the easiest to support. If you find support missing,
 please send patches
 
-emmc support is not working. 
+emmc support is not working.
 
 
 This layer depends on:
