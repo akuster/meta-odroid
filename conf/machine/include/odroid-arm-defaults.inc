@@ -40,8 +40,7 @@ UBOOT_SCRIPT ?= "boot.${UBOOT_ENV_SUFFIX}"
 UBOOT_LOAD_CMD ?= "ext4load"
 UBOOT_BOOT_CMD ?= "bootz"
 
-UBOOT_BOOTPART ?= "2"
-UBOOT_BOOTTYPE ?= "mmc"
+UBOOT_LOAD_PART ?= "2"
 BOOT_PREFIX ?= "boot/"
 
 UBOOT_EXTRA_ENV ?= ""

@@ -11,15 +11,15 @@
 #
 # UBOOT_CONSOLE: default console, e.g.,  "ttyttySAC2,115200"
 #
-# UBOOT_LOAD_CMD: default partition, e.g., "load"
+# UBOOT_LOAD_CMD: default load command, e.g., "load"
+#
+# UBOOT_LOAD_IFACE: default load interface, e.g., "mmc"
+#
+# UBOOT_LOAD_PART: default load partition #
 #
 # UBOOT_BOOTARGS:
 #
-# UBOOT_BOOTPART: default boot partition #
-#
-# UBOOT_BOOTTYPE: default mmc
-#
-# UBOOT_FILE_TITLE: default partition, e.g., "UBOOT-CONFIG"
+# UBOOT_FILE_TITLE: u-boot script title e.g., "UBOOT-CONFIG"
 #
 # UBOOT_EXTRA_ENV: default add extra env vars , e.g., "vout,'vga'"
 #
@@ -39,7 +39,6 @@ UBOOT_ENV_CONFIG ?= "${WORKDIR}/${UBOOT_ENV}.cmd"
 UBOOT_LOADADDRESS ?= ""
 UBOOT_FDT_LOADADDR ?= ""
 UBOOT_BOOTARGS ?= "${console} ${root} ${video} ${extra_cmdline}"
-UBOOT_BOOTTYPE ?= "mmc"
 UBOOT_KERNEL_NAME ?= ""
 UBOOT_INITRD_NAME ?= ""
 UBOOT_INITRD_ADDR ?= "-"
@@ -49,10 +48,11 @@ UBOOT_ROOT_mmc ?= "mmcblk1p2 ${UBOOT_ROOT_ARGS}"
 UBOOT_ROOT_nfs ?= "nfs ${UBOOT_ROOT_ARGS}"
 
 UBOOT_CONSOLE ?= ""
-UBOOT_BOOTPART ?= "1"
 UBOOT_BOOT_CMD ?= ""
-
 UBOOT_LOAD_CMD ?= "load"
+UBOOT_LOAD_IFACE ?= "mmc"
+UBOOT_LOAD_PART ?= "1"
+
 UBOOT_EXTRA_ENV ?= ""
 UBOOT_FILE_TITLE ?= "#"
 UBOOT_DELAY ?= ""
@@ -158,8 +158,8 @@ python create_uboot_boot_txt() {
 
             loadcmd = localdata.getVar('UBOOT_LOAD_CMD')
 
-            boottype = localdata.getVar('UBOOT_BOOTTYPE')
-            bootpart = localdata.getVar('UBOOT_BOOTPART')
+            loadiface = localdata.getVar('UBOOT_LOAD_IFACE')
+            loadpart = localdata.getVar('UBOOT_LOAD_PART')
 
             # initrd
             initrdaddr = localdata.getVar('UBOOT_INITRD_ADDR')
@@ -193,16 +193,16 @@ python create_uboot_boot_txt() {
                 if d.getVar("UBOOT_MULTI_BOOT") == "1" :
                     for p in range(0,3):
                         for d in range(1,3):
-                            cfgfile.write("if %s %s %s:%s %s %s%s; then\n" % (loadcmd, boottype, p, d, kerneladdr, bootprefix, kernelname))
-                            cfgfile.write("    %s %s %s:%s %s %s%s\n" % (loadcmd, boottype, p, d, fdtaddr, bootprefix, fdtfile))
+                            cfgfile.write("if %s %s %s:%s %s %s%s; then\n" % (loadcmd, loadiface, p, d, kerneladdr, bootprefix, kernelname))
+                            cfgfile.write("    %s %s %s:%s %s %s%s\n" % (loadcmd, loadiface, p, d, fdtaddr, bootprefix, fdtfile))
                             cfgfile.write("fi\n")
 
                 else:
-                    cfgfile.write("%s %s ${devnum}:%s %s %s%s\n" % (loadcmd, boottype, bootpart, fdtaddr,bootprefix, fdtfile))
-                    cfgfile.write("%s %s ${devnum}:%s %s %s%s\n" % (loadcmd, boottype, bootpart, kerneladdr, bootprefix, kernelname))
+                    cfgfile.write("%s %s ${devnum}:%s %s %s%s\n" % (loadcmd, loadiface, loadpart, fdtaddr,bootprefix, fdtfile))
+                    cfgfile.write("%s %s ${devnum}:%s %s %s%s\n" % (loadcmd, loadiface, loadpart, kerneladdr, bootprefix, kernelname))
 
                 if initrd:
-                    cfgfile.write("%s %s ${devnum}:%s %s %s%s\n" % (loadcmd, boottype, bootpart, initrdaddr, bootprefix, initrdname))
+                    cfgfile.write("%s %s ${devnum}:%s %s %s%s\n" % (loadcmd, loadiface, loadpart, initrdaddr, bootprefix, initrdname))
 
 
             cfgfile.write("%s %s %s %s\n" % (imgbootcmd, kerneladdr, initrdaddr, fdtaddr))
