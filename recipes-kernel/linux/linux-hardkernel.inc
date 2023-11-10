@@ -12,7 +12,7 @@ inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
 
 
-PV = "${LINUX_VERSION}+git${SRCPV}"
+PV = "${LINUX_VERSION}+git"
 
 KCONF_BSP_AUDIT_LEVEL = "0"
 
