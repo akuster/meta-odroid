@@ -1,0 +1,43 @@
+From ca3343371f7d23a5e7beef5c218dc17e48124a4f Mon Sep 17 00:00:00 2001
+From: MrRob0-X <hanya8493@gmail.com>
+Date: Tue, 20 Dec 2022 15:14:54 +0000
+Subject: [PATCH] Makefile: set check for two way path's
+
+this will avoid  error when building standalone or in kernel versions like 5.4
+
+Upstream-Status: Backport [https://github.com/MrRob0-X/rtl8188eus/commit/3a4ce2bde940b02a476577acf87087dacbffe34c]
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ drivers/net/wireless/rtl8821cu/Makefile | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/net/wireless/rtl8821cu/Makefile b/drivers/net/wireless/rtl8821cu/Makefile
+index df0927a4637d..c13e87d42660 100644
+--- a/drivers/net/wireless/rtl8821cu/Makefile
++++ b/drivers/net/wireless/rtl8821cu/Makefile
+@@ -36,7 +36,7 @@ ifeq ($(GCC_VER_49),1)
+ EXTRA_CFLAGS += -Wno-date-time	# Fix compile error && warning on gcc 4.9 and later
+ endif
+ 
+-EXTRA_CFLAGS += -I$(src)/include
++EXTRA_CFLAGS += -I$(src)/include -I$(srctree)/$(src)/include
+ 
+ EXTRA_LDFLAGS += --strip-debug
+ 
+@@ -286,10 +286,11 @@ _HAL_INTFS_FILES :=	hal/hal_intf.o \
+ 			hal/led/hal_$(HCI_NAME)_led.o
+ 
+ 
+-EXTRA_CFLAGS += -I$(src)/platform
++EXTRA_CFLAGS += -I$(src)/platform -I$(srctree)/$(src)/platform
+ _PLATFORM_FILES := platform/platform_ops.o
+ 
+-EXTRA_CFLAGS += -I$(src)/hal/btc
++EXTRA_CFLAGS += -I$(src)/hal/btc -I$(srctree)/$(src)/hal/btc
++EXTRA_CFLAGS += -I$(src)/hal/phydm -I$(srctree)/$(src)/hal/phydm
+ 
+ ########### HAL_RTL8188E #################################
+ ifeq ($(CONFIG_RTL8188E), y)
+-- 
+2.42.1
+
