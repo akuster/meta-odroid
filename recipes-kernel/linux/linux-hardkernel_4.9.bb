@@ -1,4 +1,4 @@
-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}-${PV}:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}-4.9:"
 
 KBRANCH = "odroidg12-4.9.y"
 KBUILD_DEFCONFIG = "odroidg12_defconfig"
