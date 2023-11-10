@@ -1,4 +1,4 @@
-From f6549c85410668e73503221ce6147d049cc6251d Mon Sep 17 00:00:00 2001
+From 90d99abad433cc566af1375469bfc4f42f63a39b Mon Sep 17 00:00:00 2001
 From: Heinrich Schuchardt <xypron.glpk@gmx.de>
 Date: Sat, 17 Mar 2018 22:49:36 +0000
 Subject: [PATCH] mmc: avoid division by zero in meson_mmc_config_clock
@@ -21,11 +21,11 @@ Signed-off-by: Armin Kuster <akuster808@gmail.com>
  drivers/mmc/meson_gx_mmc.c | 3 +++
  1 file changed, 3 insertions(+)
 
-Index: git/drivers/mmc/meson_gx_mmc.c
-===================================================================
---- git.orig/drivers/mmc/meson_gx_mmc.c
-+++ git/drivers/mmc/meson_gx_mmc.c
-@@ -52,6 +52,9 @@ static void meson_mmc_config_clock(struc
+diff --git a/drivers/mmc/meson_gx_mmc.c b/drivers/mmc/meson_gx_mmc.c
+index fcf4f03d1e..6e54e4083d 100644
+--- a/drivers/mmc/meson_gx_mmc.c
++++ b/drivers/mmc/meson_gx_mmc.c
+@@ -52,6 +52,9 @@ static void meson_mmc_config_clock(struct mmc *mmc)
  
  	/* TOFIX This should use the proper clock taken from DT */
  

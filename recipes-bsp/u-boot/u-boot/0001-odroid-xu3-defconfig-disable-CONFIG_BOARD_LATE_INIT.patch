@@ -1,4 +1,4 @@
-From 74c59381df6516fd1ac4891b9d553096c19982eb Mon Sep 17 00:00:00 2001
+From 531d4eca2ffb4f9904d8e820dbd2919ac5c76b77 Mon Sep 17 00:00:00 2001
 From: Armin Kuster <akuster808@gmail.com>
 Date: Mon, 30 Jan 2023 19:33:52 +0000
 Subject: [PATCH] odroid-xu3-defconfig: disable CONFIG_BOARD_LATE_INIT
@@ -10,21 +10,20 @@ cros-ec communications failure -96
 Upstream-Status: Inappropriate [configuration]
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
+
 ---
  configs/odroid-xu3_defconfig | 1 -
  1 file changed, 1 deletion(-)
 
 diff --git a/configs/odroid-xu3_defconfig b/configs/odroid-xu3_defconfig
-index 7593d1fbcd..1e57fa3cee 100644
+index 3f03a9d71f..f4e8e47f78 100644
 --- a/configs/odroid-xu3_defconfig
 +++ b/configs/odroid-xu3_defconfig
-@@ -26,7 +26,6 @@ CONFIG_CONSOLE_MUX=y
+@@ -25,7 +25,6 @@ CONFIG_CONSOLE_MUX=y
  CONFIG_BOARD_TYPES=y
  # CONFIG_DISPLAY_BOARDINFO is not set
  CONFIG_DISPLAY_BOARDINFO_LATE=y
 -CONFIG_BOARD_LATE_INIT=y
  CONFIG_MISC_INIT_R=y
+ CONFIG_SYS_PROMPT="ODROID-XU3 # "
  CONFIG_SYS_PBSIZE=1024
- CONFIG_CMD_THOR_DOWNLOAD=y
---
-2.25.1
