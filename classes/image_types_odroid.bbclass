@@ -18,11 +18,11 @@ inherit image_types
 do_rootfs[depends] += " virtual/bootloader:do_packagedata"
 
 generic_odroid_xu_wic_cmd() {
-    dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 seek=1
-    dd if=${DEPLOY_DIR_IMAGE}/bl2.bin.hardkernel of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 seek=31
-    dd if=${DEPLOY_DIR_IMAGE}/u-boot-dtb.bin of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 seek=63
-    dd if=${DEPLOY_DIR_IMAGE}/tzsw.bin.hardkernel of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 seek=2111
-    dd if=/dev/zero of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc count=32 bs=512 seek="2625"
+    dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel of=$out.wic conv=notrunc bs=512 seek=1
+    dd if=${DEPLOY_DIR_IMAGE}/bl2.bin.hardkernel of=$out.wic conv=notrunc bs=512 seek=31
+    dd if=${DEPLOY_DIR_IMAGE}/u-boot-dtb.bin of=$out.wic conv=notrunc bs=512 seek=63
+    dd if=${DEPLOY_DIR_IMAGE}/tzsw.bin.hardkernel of=$out.wic conv=notrunc bs=512 seek=2111
+    dd if=/dev/zero of=$out.wic conv=notrunc count=32 bs=512 seek="2625"
 }
 
 IMAGE_CMD:wic:append:odroid-xu3() {
@@ -42,25 +42,25 @@ IMAGE_CMD:wic:append:odroid-hc1() {
 }
 
 IMAGE_CMD:wic:append:odroid-c1() {
-    dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel   of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=1 count=442
-    dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel   of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 skip=1 seek=1
-    dd if=${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.${UBOOT_SUFFIX} of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 seek=64
+    dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel   of=$out.wic conv=notrunc bs=1 count=442
+    dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel   of=$out.wic conv=notrunc bs=512 skip=1 seek=1
+    dd if=${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.${UBOOT_SUFFIX} of=$out.wic conv=notrunc bs=512 seek=64
 }
 
 # Write U-Boot before wic generates compressed rootfs for odroid-c2 machine
 IMAGE_CMD:wic:append:odroid-c2() {
-    dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel   of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=1 count=442
-    dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel   of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 skip=1 seek=1
-    dd if=${DEPLOY_DIR_IMAGE}/u-boot-dtb.bin of=$out${IMAGE_NAME_SUFFIX}.wic conv=notrunc bs=512 seek=97
+    dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel   of=$out.wic conv=notrunc bs=1 count=442
+    dd if=${DEPLOY_DIR_IMAGE}/bl1.bin.hardkernel   of=$out.wic conv=notrunc bs=512 skip=1 seek=1
+    dd if=${DEPLOY_DIR_IMAGE}/u-boot-dtb.bin of=$out.wic conv=notrunc bs=512 seek=97
 }
 
 generic_odroid_n2_wic_cmd() {
-    dd if=${DEPLOY_DIR_IMAGE}/${UBOOT_BINARY} of=$out${IMAGE_NAME_SUFFIX}.wic conv=fsync,notrunc bs=512 skip=1 seek=1
-    dd if=${DEPLOY_DIR_IMAGE}/${UBOOT_BINARY} of=$out${IMAGE_NAME_SUFFIX}.wic conv=fsync,notrunc bs=1 count=444
+    dd if=${DEPLOY_DIR_IMAGE}/${UBOOT_BINARY} of=$out.wic conv=fsync,notrunc bs=512 skip=1 seek=1
+    dd if=${DEPLOY_DIR_IMAGE}/${UBOOT_BINARY} of=$out.wic conv=fsync,notrunc bs=1 count=444
 }
 
 generic_odroid_c4_wic_cmd() {
-    dd if=${DEPLOY_DIR_IMAGE}/u-boot.bin of=$out${IMAGE_NAME_SUFFIX}.wic conv=fsync,notrunc bs=512 seek=1
+    dd if=${DEPLOY_DIR_IMAGE}/u-boot.bin of=$out.wic conv=fsync,notrunc bs=512 seek=1
 }
 
 IMAGE_CMD:wic:append:odroid-n2-hardkernel() {
