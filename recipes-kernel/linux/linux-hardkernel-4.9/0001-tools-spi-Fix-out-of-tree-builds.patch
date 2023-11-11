@@ -1,0 +1,103 @@
+From 325278ff8abb4abc4a0e8b03a58cffbe2fb68460 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sat, 11 Nov 2023 12:41:45 -0800
+Subject: [PATCH] tools/spi: Fix out of tree builds
+
+Backport Makefile changes from upstream kernel to fix build when it is
+built from outside the kernel sources as a separate package
+
+Upstream-Status: Backport [multiple patches to tools/spi/Makefile]
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ tools/spi/Build    |  2 ++
+ tools/spi/Makefile | 68 ++++++++++++++++++++++++++++++++++++++++++++--
+ 2 files changed, 67 insertions(+), 3 deletions(-)
+ create mode 100644 tools/spi/Build
+
+diff --git a/tools/spi/Build b/tools/spi/Build
+new file mode 100644
+index 00000000..8e846603
+--- /dev/null
++++ b/tools/spi/Build
+@@ -0,0 +1,2 @@
++spidev_test-y += spidev_test.o
++spidev_fdx-y += spidev_fdx.o
+diff --git a/tools/spi/Makefile b/tools/spi/Makefile
+index 3815b18b..7fccd245 100644
+--- a/tools/spi/Makefile
++++ b/tools/spi/Makefile
+@@ -1,6 +1,68 @@
+-CC = $(CROSS_COMPILE)gcc
++# SPDX-License-Identifier: GPL-2.0-only
++include ../scripts/Makefile.include
+ 
+-all: spidev_test spidev_fdx
++bindir ?= /usr/bin
++
++ifeq ($(srctree),)
++srctree := $(patsubst %/,%,$(dir $(CURDIR)))
++srctree := $(patsubst %/,%,$(dir $(srctree)))
++endif
++
++# Do not use make's built-in rules
++# (this improves performance and avoids hard-to-debug behaviour);
++MAKEFLAGS += -r
++
++CFLAGS += -O2 -Wall -g -D_GNU_SOURCE -I$(OUTPUT)include
++
++ALL_TARGETS := spidev_test spidev_fdx
++ALL_PROGRAMS := $(patsubst %,$(OUTPUT)%,$(ALL_TARGETS))
++
++all: $(ALL_PROGRAMS)
++
++export srctree OUTPUT CC LD CFLAGS
++include $(srctree)/tools/build/Makefile.include
++
++#
++# We need the following to be outside of kernel tree
++#
++$(OUTPUT)include/linux/spi: ../../include/uapi/linux/spi
++	mkdir -p $(OUTPUT)include/linux/spi 2>&1 || true
++	ln -sf $(CURDIR)/../../include/uapi/linux/spi/spidev.h $@
++	ln -sf $(CURDIR)/../../include/uapi/linux/spi/spi.h $@
++
++prepare: $(OUTPUT)include/linux/spi
++
++#
++# spidev_test
++#
++SPIDEV_TEST_IN := $(OUTPUT)spidev_test-in.o
++$(SPIDEV_TEST_IN): prepare FORCE
++	$(Q)$(MAKE) $(build)=spidev_test
++$(OUTPUT)spidev_test: $(SPIDEV_TEST_IN)
++	$(QUIET_LINK)$(CC) $(CFLAGS) $(LDFLAGS) $< -o $@
++
++#
++# spidev_fdx
++#
++SPIDEV_FDX_IN := $(OUTPUT)spidev_fdx-in.o
++$(SPIDEV_FDX_IN): prepare FORCE
++	$(Q)$(MAKE) $(build)=spidev_fdx
++$(OUTPUT)spidev_fdx: $(SPIDEV_FDX_IN)
++	$(QUIET_LINK)$(CC) $(CFLAGS) $(LDFLAGS) $< -o $@
+ 
+ clean:
+-	$(RM) spidev_test spidev_fdx
++	rm -f $(ALL_PROGRAMS)
++	rm -rf $(OUTPUT)include/
++	find $(or $(OUTPUT),.) -name '*.o' -delete
++	find $(or $(OUTPUT),.) -name '\.*.o.d' -delete
++	find $(or $(OUTPUT),.) -name '\.*.o.cmd' -delete
++
++install: $(ALL_PROGRAMS)
++	install -d -m 755 $(DESTDIR)$(bindir);		\
++	for program in $(ALL_PROGRAMS); do		\
++		install $$program $(DESTDIR)$(bindir);	\
++	done
++
++FORCE:
++
++.PHONY: all install clean FORCE prepare
+-- 
+2.42.1
+

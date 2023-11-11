@@ -1,2 +1,4 @@
 patch 0001-Disable-misleading-indentation-warning.patch
 patch 0001-fix-build-with-gcc-12.patch
+patch 0001-tools-build-Fix-objtool-build-with-clang.patch
+patch 0001-tools-spi-Fix-out-of-tree-builds.patch

@@ -1,0 +1,44 @@
+From 1b042e63350e9f0e23125356d44ba5eaf0734648 Mon Sep 17 00:00:00 2001
+From: Peter Foley <pefoley2@pefoley.com>
+Date: Sun, 27 Nov 2016 21:43:46 -0500
+Subject: [PATCH] tools build: Fix objtool build with clang
+
+Clang doesn't support multiple arguments being passed to -Wp, so split
+them.
+
+  Fixes this error:
+  HOSTCC   tools/objtool/fixdep.o
+  cat: tools/objtool/.fixdep.o.d: No such file or directory
+
+Signed-off-by: Peter Foley <pefoley2@pefoley.com>
+Tested-by: Arnaldo Carvalho de Melo <acme@redhat.com>
+Acked-by: Jiri Olsa <jolsa@redhat.com>
+Cc: Wang Nan <wangnan0@huawei.com>
+Link: http://lkml.kernel.org/r/20161128024346.17371-1-pefoley2@pefoley.com
+Upstream-Status: Backport [http://lkml.kernel.org/r/20161128024346.17371-1-pefoley2@pefoley.com]
+Signed-off-by: Arnaldo Carvalho de Melo <acme@redhat.com>
+---
+ tools/build/Build.include | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/tools/build/Build.include b/tools/build/Build.include
+index ab02f8df..d82d3a3f 100644
+--- a/tools/build/Build.include
++++ b/tools/build/Build.include
+@@ -90,10 +90,10 @@ if_changed = $(if $(strip $(any-prereq) $(arg-check)),             \
+ # - per target C flags
+ # - per object C flags
+ # - BUILD_STR macro to allow '-D"$(variable)"' constructs
+-c_flags = -Wp,-MD,$(depfile),-MT,$@ $(CFLAGS) -D"BUILD_STR(s)=\#s" $(CFLAGS_$(basetarget).o) $(CFLAGS_$(obj))
+-cxx_flags = -Wp,-MD,$(depfile),-MT,$@ $(CXXFLAGS) -D"BUILD_STR(s)=\#s" $(CXXFLAGS_$(basetarget).o) $(CXXFLAGS_$(obj))
++c_flags = -Wp,-MD,$(depfile) -Wp,-MT,$@ $(CFLAGS) -D"BUILD_STR(s)=\#s" $(CFLAGS_$(basetarget).o) $(CFLAGS_$(obj))
++cxx_flags = -Wp,-MD,$(depfile) -Wp,-MT,$@ $(CXXFLAGS) -D"BUILD_STR(s)=\#s" $(CXXFLAGS_$(basetarget).o) $(CXXFLAGS_$(obj))
+ 
+ ###
+ ## HOSTCC C flags
+ 
+-host_c_flags = -Wp,-MD,$(depfile),-MT,$@ $(CHOSTFLAGS) -D"BUILD_STR(s)=\#s" $(CHOSTFLAGS_$(basetarget).o) $(CHOSTFLAGS_$(obj))
++host_c_flags = -Wp,-MD,$(depfile) -Wp,-MT,$@ $(CHOSTFLAGS) -D"BUILD_STR(s)=\#s" $(CHOSTFLAGS_$(basetarget).o) $(CHOSTFLAGS_$(obj))
+-- 
+2.42.1
+
