@@ -24,4 +24,10 @@ do_install:append:meson-gx () {
     fi
 }
 
+do_install:append() {
+    if [ -n "${@bb.utils.contains('MACHINE_FEATURES', 'mali', 'mali', '', d)}" ]; then
+        rm -rf ${D}${includedir}/KHR/khrplatform.h
+    fi
+}
+
 PACKAGECONFIG:append:meson-gx = " ${@bb.utils.contains('MACHINE_FEATURES', 'lima', 'kmsro lima panfrost', '', d)}"
