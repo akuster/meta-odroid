@@ -1,0 +1,55 @@
+From 04764c32c41917ffeddd8b920505a3503f988913 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 17 Nov 2023 01:16:24 -0800
+Subject: [PATCH] gles2: Update gl2ext.h
+
+Fixes weston build issue
+| ../weston-12.0.2/libweston/renderer-gl/gl-renderer.c:1958:7: error: use of undeclared identifier 'GL_RGBA16_EXT'
+|  1958 |         case GL_RGBA16_EXT:
+|       |              ^
+| 1 error generated.
+
+Upstream-Status: Pending
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ include/GLES2/gl2ext.h | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+--- a/include/GLES2/gl2ext.h
++++ b/include/GLES2/gl2ext.h
+@@ -532,6 +532,35 @@ typedef void (GL_APIENTRYP GLDEBUGPROCKH
+ #define GL_COLOR_ATTACHMENT15_EXT                               0x8CEF
+ #endif
+ 
++#ifndef GL_EXT_texture_norm16
++#define GL_EXT_texture_norm16 1
++#define GL_R16_EXT                        0x822A
++#define GL_RG16_EXT                       0x822C
++#define GL_RGBA16_EXT                     0x805B
++#define GL_RGB16_EXT                      0x8054
++#define GL_RGB16_SNORM_EXT                0x8F9A
++#endif /* GL_EXT_texture_norm16 */
++#ifndef GL_EXT_sparse_texture
++#define GL_EXT_sparse_texture 1
++#define GL_TEXTURE_SPARSE_EXT             0x91A6
++#define GL_VIRTUAL_PAGE_SIZE_INDEX_EXT    0x91A7
++#define GL_NUM_SPARSE_LEVELS_EXT          0x91AA
++#define GL_NUM_VIRTUAL_PAGE_SIZES_EXT     0x91A8
++#define GL_VIRTUAL_PAGE_SIZE_X_EXT        0x9195
++#define GL_VIRTUAL_PAGE_SIZE_Y_EXT        0x9196
++#define GL_VIRTUAL_PAGE_SIZE_Z_EXT        0x9197
++#define GL_TEXTURE_2D_ARRAY               0x8C1A
++#define GL_TEXTURE_3D                     0x806F
++#define GL_MAX_SPARSE_TEXTURE_SIZE_EXT    0x9198
++#define GL_MAX_SPARSE_3D_TEXTURE_SIZE_EXT 0x9199
++#define GL_MAX_SPARSE_ARRAY_TEXTURE_LAYERS_EXT 0x919A
++#define GL_SPARSE_TEXTURE_FULL_ARRAY_CUBE_MIPMAPS_EXT 0x91A9
++typedef void (GL_APIENTRYP PFNGLTEXPAGECOMMITMENTEXTPROC) (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLboolean commit);
++#ifdef GL_GLEXT_PROTOTYPES
++GL_APICALL void GL_APIENTRY glTexPageCommitmentEXT (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLboolean commit);
++#endif
++#endif /* GL_EXT_sparse_texture */
++
+ /* GL_EXT_map_buffer_range */
+ #ifndef GL_EXT_map_buffer_range
+ #define GL_MAP_READ_BIT_EXT                                     0x0001
