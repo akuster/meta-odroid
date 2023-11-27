@@ -1,6 +1,7 @@
 #Mali userland provides these
 #
 PROVIDES:remove:meson-gx  = "${@bb.utils.contains('MACHINE_FEATURES', 'mali', 'virtual/libgbm virtual/libgles1 virtual/libgles2 virtual/egl', '', d)}"
+PACKAGECONFIG:append:meson-gx = " ${@bb.utils.contains('MACHINE_FEATURES', 'lima', 'kmsro lima panfrost', '', d)}"
 do_install:append:meson-gx () {
     if [ -n "${@bb.utils.contains('MACHINE_FEATURES', 'mali', 'mali', '', d)}" ]; then
         rm -f ${D}/${libdir}/libEGL*
@@ -8,7 +9,7 @@ do_install:append:meson-gx () {
         rm -f ${D}/${libdir}/libGLESv2.*
         rm -f ${D}/${libdir}/libgbm*
         rm -f ${D}/${libdir}/libwayland-egl*
-	rm -f ${D}${libdir}/pkgconfig/glesv1_cm.pc
+	      rm -f ${D}${libdir}/pkgconfig/glesv1_cm.pc
         rm -f ${D}${includedir}/EGL/eglext.h
         rm -f ${D}${includedir}/EGL/eglmesaext.h
         rm -f ${D}${includedir}/EGL/egl.h
@@ -20,14 +21,8 @@ do_install:append:meson-gx () {
         rm -f ${D}${includedir}/GLES/gl.h
         rm -f ${D}${includedir}/GLES/glext.h
         rm -f ${D}${includedir}/GLES/glplatform.h
-
+        if [ -n "${@bb.utils.contains('PREFERRED_PROVIDER_virtual/gpu', 'mali-g31', 'mali-g31', '', d)}" ]; then
+            rm -f ${D}${includedir}/KHR/khrplatform.h
+        fi
     fi
 }
-
-do_install:append:odroid-c4() {
-    if [ -n "${@bb.utils.contains('MACHINE_FEATURES', 'mali', 'mali', '', d)}" ]; then
-        rm -rf ${D}${includedir}/KHR/khrplatform.h
-    fi
-}
-
-PACKAGECONFIG:append:meson-gx = " ${@bb.utils.contains('MACHINE_FEATURES', 'lima', 'kmsro lima panfrost', '', d)}"
