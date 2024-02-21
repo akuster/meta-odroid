@@ -12,7 +12,7 @@ inherit ${@oe.utils.conditional('MACHINE', 'odroid-n2l', 'uboot-boot-scr', '', d
 inherit ${@oe.utils.conditional('MACHINE', 'odroid-m1', 'uboot-boot-scr', '', d)}
 
 DEPENDS += "u-boot-mkimage-native atf-native"
-DEPENDS:append:odroid-m1 = " ${PYTHON_PN}-pyelftools-native"
+DEPENDS:append:odroid-m1 = " python3-pyelftools-native"
 
 SRC_URI:append:odroid =  " file://0001-mmc-avoid-division-by-zero-in-meson_mmc_config_clock.patch \
                            file://0001-odroid-xu3-defconfig-disable-CONFIG_BOARD_LATE_INIT.patch \
