@@ -15,15 +15,15 @@ Signed-off-by: Armin Kuster <akuster808@gmail.com>
  configs/odroid-xu3_defconfig | 1 -
  1 file changed, 1 deletion(-)
 
-diff --git a/configs/odroid-xu3_defconfig b/configs/odroid-xu3_defconfig
-index 3f03a9d71f..f4e8e47f78 100644
---- a/configs/odroid-xu3_defconfig
-+++ b/configs/odroid-xu3_defconfig
-@@ -25,7 +25,6 @@ CONFIG_CONSOLE_MUX=y
+Index: git/configs/odroid-xu3_defconfig
+===================================================================
+--- git.orig/configs/odroid-xu3_defconfig
++++ git/configs/odroid-xu3_defconfig
+@@ -26,7 +26,6 @@ CONFIG_CONSOLE_MUX=y
  CONFIG_BOARD_TYPES=y
  # CONFIG_DISPLAY_BOARDINFO is not set
  CONFIG_DISPLAY_BOARDINFO_LATE=y
 -CONFIG_BOARD_LATE_INIT=y
  CONFIG_MISC_INIT_R=y
  CONFIG_SYS_PROMPT="ODROID-XU3 # "
- CONFIG_SYS_PBSIZE=1024
+ CONFIG_CMD_THOR_DOWNLOAD=y
