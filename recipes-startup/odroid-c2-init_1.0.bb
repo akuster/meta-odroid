@@ -2,13 +2,7 @@ DESCRIPTON = "Startup script for odroid-c2"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
-PR = "r0"
-
 SRC_URI = "file://odroid-c2-init"
-
-S = "${WORKDIR}"
-
-PR = "r0"
 
 RDEPENDS:${PN} = "bash"
 
@@ -31,9 +25,9 @@ do_install() {
     #
     # Install files in to the image
     #
-    # The files fetched via SRC_URI (above) will be in ${WORKDIR}.
+    # The files fetched via SRC_URI (above) will be in ${UNPACKDIR}.
     #
-    install -m 0755 ${WORKDIR}/odroid-c2-init  ${D}${sysconfdir}/init.d/
+    install -m 0755 ${UNPACKDIR}/odroid-c2-init  ${D}${sysconfdir}/init.d/
 
     #
     # Symbolic links can also be installed. e.g.

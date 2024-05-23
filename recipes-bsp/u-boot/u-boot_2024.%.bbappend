@@ -94,22 +94,22 @@ SRC_URI:append:odroid-m1 = "\
 "
 
 do_compile:prepend:odroid-m1 () {
-    export BL31="${WORKDIR}/odroid-m1/rk3568_bl31.elf"
-    export ROCKCHIP_TPL="${WORKDIR}/odroid-m1/rk3568_ddr_1560MHz.bin"
+    export BL31="${UNPACKDIR}/odroid-m1/rk3568_bl31.elf"
+    export ROCKCHIP_TPL="${UNPACKDIR}/odroid-m1/rk3568_ddr_1560MHz.bin"
 }
 
 do_compile:append:odroid-c2 () {
 
-        fip_create --bl30 ${WORKDIR}/odroid-c2/bl30.bin --bl301 ${WORKDIR}/odroid-c2/bl301.bin --bl31 ${WORKDIR}/odroid-c2/bl31.bin --bl33 ${B}/${UBOOT_BINARY} ${B}/fip.bin
+        fip_create --bl30 ${UNPACKDIR}/odroid-c2/bl30.bin --bl301 ${UNPACKDIR}/odroid-c2/bl301.bin --bl31 ${UNPACKDIR}/odroid-c2/bl31.bin --bl33 ${B}/${UBOOT_BINARY} ${B}/fip.bin
         fip_create --dump ${B}/fip.bin
 
-        cat ${WORKDIR}/odroid-c2/bl2.package fip.bin > ${B}/boot_new.bin
-        ${WORKDIR}/odroid-c2/aml_encrypt_gxb --bootsig --input ${B}/boot_new.bin --output ${B}/${UBOOT_BINARY}.tmp
+        cat ${UNPACKDIR}/odroid-c2/bl2.package fip.bin > ${B}/boot_new.bin
+        ${UNPACKDIR}/odroid-c2/aml_encrypt_gxb --bootsig --input ${B}/boot_new.bin --output ${B}/${UBOOT_BINARY}.tmp
         dd if=${B}/${UBOOT_BINARY}.tmp of=${B}/${UBOOT_BINARY} bs=512 skip=96
 }
 
 do_compile:append:odroid-n2 () {
-    cd ${WORKDIR}/odroid-n2
+    cd ${UNPACKDIR}/odroid-n2
     chmod +x ./blx_fix.sh
 
     ./blx_fix.sh  bl30.bin zero_tmp bl30_zero.bin bl301.bin bl301_zero.bin ${B}/bl30_new.bin bl30
@@ -154,7 +154,7 @@ do_compile:append:odroid-n2 () {
 }
 
 do_compile:append:odroid-n2l () {
-    cd ${WORKDIR}/odroid-n2l
+    cd ${UNPACKDIR}/odroid-n2l
     chmod +x ./blx_fix.sh
 
     ./blx_fix.sh  bl30.bin zero_tmp bl30_zero.bin bl301.bin bl301_zero.bin ${B}/bl30_new.bin bl30
@@ -198,7 +198,7 @@ do_compile:append:odroid-n2l () {
 
 
 compile_s905x3 () {
-    cd ${WORKDIR}/odroid-c4
+    cd ${UNPACKDIR}/odroid-c4
     chmod +x ./blx_fix.sh
 
     ./blx_fix.sh  bl30.bin zero_tmp bl30_zero.bin bl301.bin bl301_zero.bin ${B}/bl30_new.bin bl30
@@ -256,7 +256,7 @@ do_install:append () {
          install -d ${D}/emmc
          install -m 644 ${B}/${UBOOT_BINARY} ${D}/emmc/${UBOOT_IMAGE}
          ln -sf ${UBOOT_IMAGE} ${D}/emmc/${UBOOT_BINARY}
-         install -m 644 ${WORKDIR}/boot.scr ${D}/emmc
+         install -m 644 ${UNPACKDIR}/boot.scr ${D}/emmc
     fi
 }
 
