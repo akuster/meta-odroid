@@ -81,11 +81,11 @@ do_configure () {
 }
 
 do_configure:append() {
-	if [ -e ${WORKDIR}/boot.ini ]; then
-		cp ${WORKDIR}/boot.ini ${B}/
+	if [ -e ${UNPACKDIR}/boot.ini ]; then
+		cp ${UNPACKDIR}/boot.ini ${B}/
 	fi
-	if [ -e ${WORKDIR}/config.ini ]; then
-		cp ${WORKDIR}/config.ini ${B}/
+	if [ -e ${UNPACKDIR}/config.ini ]; then
+		cp ${UNPACKDIR}/config.ini ${B}/
 	fi
 }
 

@@ -7,8 +7,6 @@ SECTION = "bootloaders"
 LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0-only;md5=801f80980d171dd6425610833a22dbe6"
 
-S = "${WORKDIR}"
-
 do_patch[noexec] = "1"
 do_compile[noexec] = "1"
 
@@ -21,7 +19,7 @@ FSTYPE = "ext4"
 CLEANBROKEN = "1"
 
 do_configure () {
-    cat ${B}/emmc.tmp > ${B}/emmc.sh
+    cat ${UNPACKDIR}/emmc.tmp > ${B}/emmc.sh
     echo "dd if=/emmc/bl1.bin.hardkernel of=${EMMC_DEVICE} conv=notrunc bs=512 seek=0" >> ${B}/emmc.sh
     echo "dd if=/emmc/bl2.bin.hardkernel of=${EMMC_DEVICE} conv=notrunc bs=512 seek=30" >> ${B}/emmc.sh
     echo "dd if=/emmc/u-boot-dtb.bin of=${EMMC_DEVICE} conv=notrunc bs=512 seek=62" >> ${B}/emmc.sh
