@@ -14,11 +14,11 @@ SRC_URI = "file://odroid-lcd35.service \
 inherit systemd update-rc.d
 
 do_install:append () {
-   install -D -m 0644 ${WORKDIR}/lcd-blacklist.conf ${D}${sysconfdir}/modprobe.d/lcd-blacklist.conf
+   install -D -m 0644 ${UNPACKDIR}/lcd-blacklist.conf ${D}${sysconfdir}/modprobe.d/lcd-blacklist.conf
    if [ "${@bb.utils.contains("DISTRO_FEATURES", "systemd", "yes", "no", d)}" = "yes" ]; then
-       install -D -m 0644 ${WORKDIR}/odroid-lcd35.service ${D}${systemd_unitdir}/system/odroid-lcd35.service
+       install -D -m 0644 ${UNPACKDIR}/odroid-lcd35.service ${D}${systemd_unitdir}/system/odroid-lcd35.service
    else
-       install -D -m 0755 ${WORKDIR}/odroid-lcd35.sysvinit ${D}${sysconfdir}/init.d/odroid-lcd35
+       install -D -m 0755 ${UNPACKDIR}/odroid-lcd35.sysvinit ${D}${sysconfdir}/init.d/odroid-lcd35
    fi
 }
 

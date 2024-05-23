@@ -22,9 +22,9 @@ SRC_URI:append:odroid = "\
 CONFFILES:${PN}:odroid = "${sysconfdir}/X11/xorg.conf.d/10-armsoc.conf"
 
 do_install:append:odroid () {
-        if test -s ${WORKDIR}/10-armsoc.conf; then
+        if test -s ${UNPACKDIR}/10-armsoc.conf; then
                 install -d ${D}/${sysconfdir}/X11/xorg.conf.d
-                install -m 0644 ${WORKDIR}/10-armsoc.conf ${D}/${sysconfdir}/X11/xorg.conf.d
+                install -m 0644 ${UNPACKDIR}/10-armsoc.conf ${D}/${sysconfdir}/X11/xorg.conf.d
         fi
 }
 
