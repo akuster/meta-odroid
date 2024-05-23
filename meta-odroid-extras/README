@@ -16,7 +16,7 @@ distro feature a warning is printed at parse time:
 If you know what you are doing, this warning can be disabled by setting the following
 variable in your configuration:
 
-  SKIP_META_ODROID_EXTRAS_SANITY_CHECK = 1
+  SKIP_META_ODROID_EXTRA_SANITY_CHECK = "1"
 
 Dependencies
 ------------
