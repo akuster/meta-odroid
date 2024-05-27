@@ -11,9 +11,9 @@ stages:
     - x86-post
     - xu
     - xu-post
-    - meson32
     - meson64
     - meson64-post
+    - meson32
 
 .prep:
   stage: prep
