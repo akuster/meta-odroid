@@ -10,7 +10,7 @@ BRANCH = "aml64_buildroot_master_c4"
 SRC_URI = "git://github.com/hardkernel/buildroot_linux_amlogic_meson_mali;branch=${BRANCH};protocol=https \
            file://0001-gles2-Update-gl2ext.h.patch \
           "
-S = "${WORKDIR}/git"
+S = "${UNPACKDIR}/git"
 
 do_install() {
         # Create MALI manifest

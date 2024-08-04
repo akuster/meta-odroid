@@ -6,7 +6,7 @@ inherit module
 
 EXTRA_OEMAKE = ""
 
-S = "${WORKDIR}/git"
+S = "${UNPACKDIR}/git"
 
 do_compile() {
 	oe_runmake -C ${STAGING_KERNEL_DIR} \

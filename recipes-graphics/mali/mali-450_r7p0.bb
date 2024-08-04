@@ -16,7 +16,7 @@ SRC_URI += "file://README.md"
 SRC_URI[md5sum] = "3b7df406c0061d44c5cfdbae5f4ebe07"
 SRC_URI[sha256sum] = "8283ea5bb1f064bcc3811a95c8e3c818cf8dfdf7143c39b4059cb1f7062b9dab"
 
-S = "${WORKDIR}/buildroot_openlinux/buildroot/package/meson-mali"
+S = "${UNPACKDIR}/buildroot_openlinux/buildroot/package/meson-mali"
 
 do_install () {
 	# Create MALI manifest

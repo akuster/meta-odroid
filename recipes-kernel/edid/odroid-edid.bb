@@ -10,7 +10,7 @@ SRC_URI = "file://1024x768.bin"
           
 do_install() {
 	install -d  ${D}${nonarch_base_libdir}/firmware/edid
-	cp ${WORKDIR}/*.bin ${D}${nonarch_base_libdir}/firmware/edid
+	cp ${UNPACKDIR}/*.bin ${D}${nonarch_base_libdir}/firmware/edid
 }
 
 FILES:${PN} += "${nonarch_base_libdir}/firmware/edid/*"

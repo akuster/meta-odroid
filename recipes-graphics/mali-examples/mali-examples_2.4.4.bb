@@ -21,7 +21,7 @@ REQUIRED_DISTRO_FEATURES = "opengl x11"
 export TOOLCHAIN_ROOT = "${HOST_PREFIX}"
 EXTRA_OECMAKE = "-DTARGET=arm"
 
-S = "${WORKDIR}/Mali_OpenGL_ES_SDK_v${PV}"
+S = "${UNPACKDIR}/Mali_OpenGL_ES_SDK_v${PV}"
 
 do_install:append() {
 	install -D -m 0755 ${B}/simple_framework/libsimple_framework2.so ${d}${libidr}

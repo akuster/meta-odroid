@@ -32,7 +32,7 @@ USE_BOOTSCR ?=  '1'
 UBOOT_ENV_SUFFIX ??= "scr"
 UBOOT_ENV ?= "boot"
 
-UBOOT_ENV_CONFIG ?= "${WORKDIR}/${UBOOT_ENV}.cmd"
+UBOOT_ENV_CONFIG ?= "${UNPACKDIR}/${UBOOT_ENV}.cmd"
 
 UBOOT_LOADADDRESS ?= ""
 UBOOT_FDT_LOADADDR ?= ""
@@ -73,8 +73,8 @@ python create_uboot_boot_txt() {
     if d.getVar("USE_BOOTSCR") != "1":
       return
 
-    if not d.getVar('WORKDIR'):
-        bb.error("WORKDIR not defined, unable to package")
+    if not d.getVar('UNPACKDIR'):
+        bb.error("UNPACKDIR not defined, unable to package")
 
     cfile = d.getVar('UBOOT_ENV_CONFIG')
     if not cfile:
@@ -204,6 +204,6 @@ do_compile[prefuncs] += "create_uboot_boot_txt"
 
 do_compile:append () {
     if [ "${UBOOT_ENV_SUFFIX}" != "scr" ]; then
-        cp ${UBOOT_ENV_CONFIG} ${WORKDIR}/${UBOOT_ENV_BINARY}
+        cp ${UBOOT_ENV_CONFIG} ${UNPACKDIR}/${UBOOT_ENV_BINARY}
     fi
 }
