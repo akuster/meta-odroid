@@ -5,20 +5,21 @@ distro: poky
 
 repos:
   meta-odroid:
+    refspec: styhead
     layers:
       ../meta-odroid:
       meta-odroid-extras:
 
   poky:
     url: https://git.yoctoproject.org/git/poky
-    refspec: master
+    refspec: styhead
     layers:
       meta:
       meta-poky:
 
   meta-openembedded:
     url: http://git.openembedded.org/meta-openembedded
-    refspec: master
+    refspec: styhead
     layers:
       meta-oe:
 
