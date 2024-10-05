@@ -31,7 +31,8 @@ do_install() {
 		            ln -sf libwayland-egl.so.1 ${D}/${libdir}/libwayland-egl.so
                 install -Dm 0644 ${S}/lib/pkgconfig/gbm/gbm.pc ${D}${libdir}/pkgconfig/gbm.pc
                 install -Dm 0644 ${S}/lib/pkgconfig/wayland-egl.pc ${D}${libdir}/pkgconfig/wayland-egl.pc
-                sed -ie "s#17.1.8#100.1.1#" ${D}${libdir}/pkgconfig/gbm.pc
+                # We do not have gbm_bo_get_fd_for_plane so 21.1.0 is as far as we can go to pretend 
+                sed -ie "s#17.1.8#21.1.0#" ${D}${libdir}/pkgconfig/gbm.pc
         else
 		            install ${S}/lib/arm64/dvalin/${PV}/fbdev/libMali.so ${D}/${libdir}
                 install -Dm 0644 ${S}/include/EGL_platform/platform_fbdev/eglplatform.h ${D}${includedir}/EGL/eglplatform.h
