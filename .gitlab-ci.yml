@@ -13,7 +13,6 @@ stages:
     - xu-post
     - meson64
     - meson64-post
-    - meson32
 
 .prep:
   stage: prep
@@ -36,11 +35,6 @@ stages:
     after_script:
     - rm -fr $CI_PROJECT_DIR/build
 
-.meson32:
-    stage: meson32 
-    after_script:
-    - *after-my-script
-    - rm -fr $CI_PROJECT_DIR/build
 
 .meson64:
     stage: meson64 
@@ -91,11 +85,6 @@ odroid-xu3-lite-x11:
   extends: .xu
   script:
   - kas build --target odroid-x11-image kas/$CI_JOB_NAME.yml
-
-odroid-c1:
-  extends: .meson32
-  script:
-  - kas build --target core-image-minimal  kas/$CI_JOB_NAME.yml
 
 odroid-c2:
   extends: .meson64
