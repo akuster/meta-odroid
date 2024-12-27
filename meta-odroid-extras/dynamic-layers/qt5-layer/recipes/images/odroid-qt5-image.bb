@@ -1,6 +1,6 @@
 SUMMARY = "Basic Odroid X11 graphics image"
 
-IMAGE_FEATURES += "splash debug-tweaks ssh-server-openssh tools-debug x11-base"
+IMAGE_FEATURES += "splash ssh-server-openssh tools-debug x11-base"
 
 LICENSE = "MIT"
 
