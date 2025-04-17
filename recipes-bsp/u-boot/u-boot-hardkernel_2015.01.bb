@@ -72,8 +72,8 @@ LINAROTOOLCHAIN = "4.8-2013.11"
 
 TOOLCHAIN_PREFIX = "aarch64-linux-gnu-"
 
-PATH:prepend ="${S}/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:${S}/gcc-linaro-arm-none-eabi-4.8-2014.04_linux/bin:"
-PATH:prepend ="${S}/gcc-linaro-${LINAROTOOLCHAIN}-x86_64:aarch64-linux-gnu/bin:"
+PATH:prepend = "${S}/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux/bin:${S}/gcc-linaro-arm-none-eabi-4.8-2014.04_linux/bin:"
+PATH:prepend = "${S}/gcc-linaro-${LINAROTOOLCHAIN}-x86_64:aarch64-linux-gnu/bin:"
 
 do_configure () {
 	CROSS_COMPILE=aarch64-elf- ARCH=arm CFLAGS="" LDFLAGS="" oe_runmake mrproper
