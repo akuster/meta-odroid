@@ -1,6 +1,6 @@
 require kernel-module-mali-midgard.inc
 
-BRANCH="TX011-SW-99002-r28p0-01rel0"
+BRANCH = "TX011-SW-99002-r28p0-01rel0"
 SRC_URI = "git://github.com/akuster/mali-kernel-modules.git;branch=${BRANCH};protocol=https \
            file://fix_kbase_gpuprosp_for_5.0_kernel.patch \
            file://0001-s-vm_insert_pfn-vmf_insert_pfn-g.patch"
@@ -26,4 +26,4 @@ python __anonymous() {
         d.appendVar('MALI_FLAGS', '-D' + c + ' ')
         d.appendVar('MALI_KCONFIG', c + ' ')
 }
-export INSTALL_MOD_DIR="kernel/mali"
+export INSTALL_MOD_DIR = "kernel/mali"
