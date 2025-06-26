@@ -8,9 +8,6 @@ SRC_URI += "file://0021-mali-support-building-against-5.3.patch"
 
 SRCREV = "bff4613d70b95c783e514019d169b68bfbdd9f3b"
 
-S = "${UNPACKDIR}/git"
-
-
 MALI_KCONFIG = "MALI_PLATFORM_FILES=platform/meson/meson.c \
 		CONFIG_MALI_DMA_BUF_MAP_ON_ATTACH=y \
 		CONFIG_MALI_QUIET=y \

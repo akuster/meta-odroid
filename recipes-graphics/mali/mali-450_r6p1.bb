@@ -11,8 +11,6 @@ TYPE = "Utgard"
 SRCREV = "6ad971051be6336cf042c7fc0d31f3a92a5c3d9f"
 SRC_URI = "git://github.com/mdrjr/c2_mali;branch=master;protocol=https"
 
-S = "${UNPACKDIR}/git"
-
 do_install () {
 	# Create MALI manifest
 	install -m 755 -d ${D}${libdir} ${D}${libdir}/pkgconfig ${D}${includedir}

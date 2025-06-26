@@ -6,8 +6,6 @@ inherit module
 
 EXTRA_OEMAKE = ""
 
-S = "${UNPACKDIR}/git"
-
 do_compile() {
 	oe_runmake -C ${STAGING_KERNEL_DIR} \
 		M=$(pwd)/driver/product/kernel/drivers/gpu/arm/midgard \

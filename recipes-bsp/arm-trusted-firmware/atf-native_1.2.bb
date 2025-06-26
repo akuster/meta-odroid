@@ -6,8 +6,6 @@ SRCREV = "d0c104e1e1ad0102f0f4c70997b7ee6e6fbbe273"
 SRC_URI = "git://github.com/ARM-software/arm-trusted-firmware.git;branch=master;protocol=https"
 SRC_URI += "file://add_odroid_c2.patch"
 
-S = "${UNPACKDIR}/git"
-
 export CROSS_COMPILE = "${TARGET_PREFIX}"
 
 CFLAGS[unexport] = "1"

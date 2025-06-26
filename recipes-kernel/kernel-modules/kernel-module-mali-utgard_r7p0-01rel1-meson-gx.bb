@@ -7,9 +7,6 @@ SRC_URI = "git://github.com/superna9999/meson_gx_mali_450.git;branch=${BRANCH};p
 
 SRCREV = "8be0f308ce73e0f7666226503b12dbb508b3b880"
 
-S = "${UNPACKDIR}/git"
-
-
 MALI_KCONFIG = "MALI_PLATFORM_FILES=platform/meson/meson.c \
 		CONFIG_MALI_DMA_BUF_MAP_ON_ATTACH=y \
 		CONFIG_MALI_QUIET=y \
