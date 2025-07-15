@@ -26,8 +26,8 @@ UBOOT_INITIAL_ENV = ""
 SRC_URI = "\
     git://github.com/hardkernel/u-boot.git;branch=${BRANCH};name=uboot;protocol=https \
     file://boot.ini \
-    https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz;name=aarch64linaro;subdir=git \
-    https://releases.linaro.org/archive/14.04/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2014.04_linux.tar.xz;name=aarch64linaroelf;subdir=git \
+    https://releases.linaro.org/archive/13.11/components/toolchain/binaries/gcc-linaro-aarch64-none-elf-4.8-2013.11_linux.tar.xz;name=aarch64linaro;subdir=${BB_GIT_DEFAULT_DESTSUFFIX} \
+    https://releases.linaro.org/archive/14.04/components/toolchain/binaries/gcc-linaro-arm-none-eabi-4.8-2014.04_linux.tar.xz;name=aarch64linaroelf;subdir=${BB_GIT_DEFAULT_DESTSUFFIX} \
     "
 
 SRC_URI:append:odroid-c4-hardkernel = "\
@@ -53,13 +53,12 @@ SRC_URI[aarch64linaroelf.sha256sum] = "98b99b7fa2eb268d158639db2a9b8bcb4361e9408
 
 SRCREV_uboot = "154ddfc826e72c902232169b676b2a4e59c75171"
 
-PR = "${PV}+git${SRCPV}"
+PV .= "+git"
 
 UBOOT_SUFFIX ?= "bin"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-S = "${UNPACKDIR}/git"
 B = "${S}"
 
 inherit uboot-boot-scr
