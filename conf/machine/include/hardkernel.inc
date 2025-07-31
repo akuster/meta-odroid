@@ -7,7 +7,7 @@ PREFERRED_VERSION_linux-hardkernel ?= "4.9%"
 #specify u-boot parameters
 PREFERRED_PROVIDER_virtual/bootloader = "u-boot-hardkernel"
 PREFERRED_PROVIDER_u-boot = "u-boot-hardkernel"
-PREFERRED_VERSION_u-boot-hardkernel = "2015.01"
+PREFERRED_VERSION_u-boot-hardkernel = "2015.01+git"
 
 SERIAL_CONSOLES = "115200;ttyS0"
 UBOOT_CONSOLE = "console=ttyS0,115200"
